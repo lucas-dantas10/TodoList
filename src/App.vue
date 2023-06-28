@@ -1,6 +1,14 @@
 <template>
-  <div class="bg-primary h-screen w-screen">
-    <h1 class="text-5xl">teste tailwindcss</h1>
-    <!-- <router-view></router-view> -->
-  </div>
+    <main class="bg-primary min-h-screen w-screen">
+        <Intro></Intro>
+    </main>
 </template>
+
+<script>
+import Intro from './views/Intro/Intro.vue'
+export default {
+    components: {
+        Intro
+    },
+}
+</script>
