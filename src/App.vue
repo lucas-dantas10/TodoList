@@ -1,14 +1,5 @@
 <template>
     <main class="bg-primary min-h-screen w-screen">
-        <Intro></Intro>
+        <router-view></router-view>
     </main>
 </template>
-
-<script>
-import Intro from './views/Intro/Intro.vue'
-export default {
-    components: {
-        Intro
-    },
-}
-</script>
