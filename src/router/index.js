@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from "vue-router";
 const Intro = () => import("../views/Intro/Intro.vue");
 const Welcome = () => import("../views/Intro/Welcome.vue");
 const Login = () => import("../views/Login/Login.vue");
+const CreateAccount = () => import('../views/Login/CreateAccount.vue')
 
 const routes = [
     {
@@ -19,11 +20,11 @@ const routes = [
         path: '/login',
         component: Login
     },
-    // {
-    //     name: 'CreateAccount',
-    //     path: '/criar-conta',
-    //     component: CreateAccount
-    // },
+    {
+        name: 'CreateAccount',
+        path: '/criar-conta',
+        component: CreateAccount
+    },
 ];
 
 const router = createRouter({
