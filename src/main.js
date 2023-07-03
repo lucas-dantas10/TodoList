@@ -5,9 +5,10 @@ import router from './router/index.js';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { faChevronLeft } from '@fortawesome/free-solid-svg-icons';
-
+import { faGoogle } from '@fortawesome/free-brands-svg-icons'
+ 
 library.add([
-    faChevronLeft
+    faChevronLeft, faGoogle
 ]);
 
 const app = createApp(App);
