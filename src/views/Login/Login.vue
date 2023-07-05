@@ -2,6 +2,9 @@
     <LoginLayout :title="'Login'">
         <template v-slot:form>
             <form class="flex flex-col gap-6" autocomplete="on">
+                <div v-if="errorMsg" class="border border-red-600 bg-red-600 w-full rounded-md px-4 py-2">
+                    <p>{{ errorMsg }}</p>
+                </div>
                 <div class="flex flex-col gap-4">
                     <label for="name" class="text-xl text-slate-200">Nome</label>
                     <input class="border border-[#979797] rounded-md bg-[#1D1D1D] px-4 py-2 focus:outline-indigo-500"
@@ -37,13 +40,22 @@ export default {
             form: {
                 name: '',
                 password: ''
-            }
+            },
+            errorMsg: ''
         }
     },
 
     methods: {
         login() {
-            console.log('submit')
+            this.$store.dispatch('login', this.form)
+                .then(res => {
+                    console.log(res.data);
+                    this.$router.push({name: 'Home'});
+                })
+                .catch(({response}) => {
+                    this.errorMsg = response.data.message;
+                    console.log(response.data.message);
+                });
         }
     }
 }
