@@ -47,6 +47,7 @@ export default {
 
     methods: {
         login() {
+            // this.$router.push({name: 'Home'});
             this.$store.dispatch('login', this.form)
                 .then(res => {
                     console.log(res.data);
@@ -54,7 +55,9 @@ export default {
                 })
                 .catch(({response}) => {
                     this.errorMsg = response.data.message;
-                    console.log(response.data.message);
+                    setTimeout(() => {
+                        this.errorMsg = '';
+                    }, 4000);                    
                 });
         }
     }

@@ -68,7 +68,9 @@ export default {
                 })
                 .catch(({response}) => {
                     this.errorMsg = response.data.message;
-                    console.log(response);
+                    setTimeout(() => {
+                        this.errorMsg = '';
+                    }, 4000);   
                 })
         }
     }
