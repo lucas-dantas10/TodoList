@@ -5,11 +5,11 @@ import router from './router/index.js';
 import store from './store';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { faChevronLeft } from '@fortawesome/free-solid-svg-icons';
+import { faChevronLeft, faFilter, faHouse, faCalendarDays, faPlus, faClock, faUser } from '@fortawesome/free-solid-svg-icons';
 import { faGoogle } from '@fortawesome/free-brands-svg-icons'
  
 library.add([
-    faChevronLeft, faGoogle
+    faChevronLeft, faGoogle, faFilter, faHouse, faCalendarDays, faPlus, faClock, faUser
 ]);
 
 const app = createApp(App);
