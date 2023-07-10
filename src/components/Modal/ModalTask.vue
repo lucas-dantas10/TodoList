@@ -1,5 +1,5 @@
 <template>
-    <div class="w-screen h-screen z-10 flex flex-col items-center justify-center fixed" v-if="show">
+    <div class="w-screen h-screen z-10 flex flex-col items-center justify-center fixed" v-if="modalShow">
         <form class="w-[90%] bg-[#363636] shadow-md rounded px-8 pt-6 pb-8 mb-4">
             <div class="mb-4">
                 <label class="block text-white text-xl font-bold mb-4" for="task">
@@ -40,12 +40,31 @@
 </template>
 
 <script>
-export default {
+import { reactive, toRefs } from 'vue';
+export default 
+{
+    data() {
+        return {
+            modalShow: this.show
+        }        
+    },
+
+    setup(props, context) {
+        const { show } = toRefs(props);
+
+        console.log(show.value);
+        return {
+            show
+        }
+    },
+
     props: ['show'],
 
     methods: {
         closeModal() {
-            this.show = false;
+            this.modalShow = false;
+            console.log(this.modalShow);
+            console.log("show: " + this.show);
         }
     }
 }
