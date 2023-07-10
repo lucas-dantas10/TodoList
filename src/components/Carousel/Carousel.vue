@@ -6,7 +6,7 @@
 
         <swiper-slide v-for="(page, i) in pages" :key="i">
             <div class="flex flex-col items-center justify-center gap-10">
-                <img class="w-full h-60" :src="`src/assets/${page.img}`" alt="">
+                <img class="w-full h-60" :src="page.img" alt="">
 
                 <h2 class="text-4xl">{{ page.title }}</h2>
 
@@ -24,6 +24,9 @@ import { reactive } from 'vue';
 import 'swiper/css';
 import ButtonCarousel from './ButtonCarousel.vue';
 import HeaderCarousel from './HeaderCarousel.vue';
+import Manager from '../../assets/routine.svg';
+import Routine from '../../assets/routine.svg';
+import Organize from '../../assets/organize.svg';
 
 export default {
     components: {
@@ -50,17 +53,17 @@ export default {
         return {
             pages: [
                 {
-                    img: 'manager.svg',
+                    img: Manager,
                     title: 'Gerencie suas tarefas',
                     text: 'Você pode facilmente gerenciar suas tarefas diárias'
                 },
                 {
-                    img: 'routine.svg',
+                    img: Routine,
                     title: 'Crie sua rotina diária',
                     text: 'No ToDo List você pode criar sua rotina personalizada e se manter produtivo'
                 },
                 {
-                    img: 'organize.svg',
+                    img: Organize,
                     title: 'Organize suas tarefas',
                     text: 'Você pode organizar suas tarefas diárias adicionando em categorias diferentes'
                 },
