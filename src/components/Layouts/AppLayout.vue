@@ -45,6 +45,7 @@
 
 <script>
 import ModalTask from '../Modal/ModalTask.vue';
+
 export default {
     components: {
         ModalTask
@@ -65,7 +66,6 @@ export default {
     methods: {
         showModal() {
             this.modalShow = !this.modalShow;
-            console.log(this.modalShow);
         }
     }
 }
