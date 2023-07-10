@@ -7,7 +7,7 @@ export default {
     tasks: {
         data: {},
         loading: false,
-        length: 1
+        length: 0
     },
 
     categories: {

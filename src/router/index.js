@@ -42,13 +42,13 @@ const router = createRouter({
     routes
 });
 
-router.beforeEach((to, from, next) => {
+// router.beforeEach((to, from, next) => {
 
-    if (to.meta.requiresAuth && !store.state.user.token) {
-        next({ name: 'Login' });
-    }
+//     if (to.meta.requiresAuth && !store.state.user.token) {
+//         next({ name: 'Login' });
+//     }
 
-    next();
-})
+//     next();
+// })
 
 export default router;

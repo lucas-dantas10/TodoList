@@ -24,10 +24,13 @@
 
                     <div class="w-[30%]">
                         <div class="w-full flex flex-row px-4 py-2 gap-2 border border-[#363636] bg-[#363636] rounded-lg">
-                            <button class="w-full flex flex-row items-center gap-2">
-                                Today
-                                <font-awesome-icon :icon="['fas', 'chevron-down']" />
-                            </button>
+                            <select class="w-full bg-[#363636] flex flex-row items-center gap-2">
+                                <option value="hoje" selected>
+                                    Hoje
+                                    <font-awesome-icon :icon="['fas', 'chevron-down']" />
+                                </option>
+                                <option value="ontem">Ontem</option>
+                            </select>
                         </div>
                     </div>
 
@@ -54,6 +57,8 @@
                 </div>
             </div>
         </AppLayout>
+
+        
     </div>
 </template>
 
@@ -62,7 +67,7 @@ import AppLayout from '../../components/Layouts/AppLayout.vue';
 
 export default {
     components: {
-        AppLayout
+        AppLayout,
     },
 
     data() {
@@ -79,21 +84,6 @@ export default {
                     hour: 'Today at 18:40',
                     type: 'Universidade'
                 },
-                // {
-                //     title: 'Do Math Work',
-                //     hour: 'Today at 18:40',
-                //     type: 'Universidade'
-                // },
-                // {
-                //     title: 'Do Math Work',
-                //     hour: 'Today at 18:40',
-                //     type: 'Universidade'
-                // },
-                // {
-                //     title: 'Do Math Work',
-                //     hour: 'Today at 18:40',
-                //     type: 'Universidade'
-                // },
             ]
         }
     },

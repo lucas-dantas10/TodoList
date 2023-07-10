@@ -1,4 +1,7 @@
 <template>
+
+    <ModalTask :show="modalShow" />
+
     <header class="flex flex-row items-center justify-between p-8">
         <div>
             <font-awesome-icon @click.prevent="$emit('searchShow')" class="text-2xl" :icon="['fas', 'filter']" />
@@ -25,9 +28,9 @@
             <font-awesome-icon class="text-2xl" :icon="['fas', 'calendar-days']" />
             <h3 class="text-lg-">Calendario</h3>
         </div>
-        <div
-            class="w-[15%] hover:animate-bounce text-center absolute border border-indigo-600 bg-indigo-600 rounded-full top-[-37%] right-[43%] p-4">
-            <font-awesome-icon class="text-2xl" :icon="['fas', 'plus']" />
+        <div  @click.prevent="showModal()" 
+            class="w-[15%] text-center absolute border border-indigo-600 bg-indigo-600 rounded-full top-[-37%] right-[43%] p-4">
+            <font-awesome-icon class="text-2xl" :icon="['fas', 'plus']"/>
         </div>
         <div class="flex flex-col items-center justify-center w-[15%]">
             <font-awesome-icon class="text-2xl" :icon="['fas', 'clock']" />
@@ -41,11 +44,29 @@
 </template>
 
 <script>
+import ModalTask from '../Modal/ModalTask.vue';
 export default {
+    components: {
+        ModalTask
+    },
+
+    data() {
+        return {
+            modalShow: false
+        }
+    },
+
     mounted() {
         this.$store.dispatch('getCurrentUser');
     },
 
     emits: ['searchShow'],
+
+    methods: {
+        showModal() {
+            this.modalShow = !this.modalShow;
+            console.log(this.modalShow);
+        }
+    }
 }
 </script>
