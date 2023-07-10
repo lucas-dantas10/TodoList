@@ -24,7 +24,7 @@ import { reactive } from 'vue';
 import 'swiper/css';
 import ButtonCarousel from './ButtonCarousel.vue';
 import HeaderCarousel from './HeaderCarousel.vue';
-import Manager from '../../assets/routine.svg';
+import Manager from '../../assets/manager.svg';
 import Routine from '../../assets/routine.svg';
 import Organize from '../../assets/organize.svg';
 
