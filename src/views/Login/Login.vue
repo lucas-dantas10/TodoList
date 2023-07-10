@@ -50,7 +50,6 @@ export default {
             // this.$router.push({name: 'Home'});
             this.$store.dispatch('login', this.form)
                 .then(res => {
-                    console.log(res.data);
                     this.$router.push({name: 'Home'});
                 })
                 .catch(({response}) => {
