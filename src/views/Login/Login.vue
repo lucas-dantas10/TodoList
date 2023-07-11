@@ -21,7 +21,11 @@
 
         <template v-slot:buttonForm>
             <div>
-                <button type="submit" @click.prevent="login()" class="btn-main">Entrar</button>
+                <button type="button" @click.prevent="login()"
+                    class="btn-main flex flex-row items-center justify-center gap-2">
+                    <Spinner :model-value="isLoading" :full-page="false" />
+                    Entrar
+                </button>
             </div>
         </template>
     </LoginLayout>
@@ -29,10 +33,12 @@
 
 <script>
 import LoginLayout from '../../components/Layouts/Login/LoginLayout.vue';
+import Spinner from '../../components/Spinner/Spinner.vue';
 
 export default {
     components: {
-        LoginLayout
+        LoginLayout,
+        Spinner
     },
 
     data() {
@@ -41,23 +47,25 @@ export default {
                 name: '',
                 password: ''
             },
-            errorMsg: ''
+            errorMsg: '',
+            isLoading: false
         }
     },
 
     methods: {
         login() {
-            // this.$router.push({name: 'Home'});
+            this.isLoading = true;
             this.$store.dispatch('login', this.form)
                 .then(res => {
-                    this.$router.push({name: 'Home'});
+                    this.$router.push({ name: 'Home' });
                 })
-                .catch(({response}) => {
+                .catch(({ response }) => {
                     this.errorMsg = response.data.message;
                     setTimeout(() => {
                         this.errorMsg = '';
-                    }, 4000);                    
-                });
+                    }, 4000);
+                })
+                .finally(() => this.isLoading = false);
         }
     }
 }
