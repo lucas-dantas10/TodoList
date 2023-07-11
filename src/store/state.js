@@ -5,13 +5,13 @@ export default {
     },
     
     tasks: {
-        data: {},
+        data: [],
         loading: false,
         length: 0
     },
 
     categories: {
-        data: {},
+        data: [],
         loading: false,
     }
 }
