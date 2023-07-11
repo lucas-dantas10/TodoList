@@ -1,6 +1,6 @@
 <template>
 
-    <ModalTask :show="modalShow" />
+    <ModalTask :model-value="showAddNewModal" @close="closeModal()" />
 
     <header class="flex flex-row items-center justify-between p-8">
         <div>
@@ -28,7 +28,7 @@
             <font-awesome-icon class="text-2xl" :icon="['fas', 'calendar-days']" />
             <h3 class="text-lg-">Calendario</h3>
         </div>
-        <div  @click.prevent="showModal()" 
+        <div  @click.prevent="showNewModal()" 
             class="w-[15%] text-center absolute border border-indigo-600 bg-indigo-600 rounded-full top-[-37%] right-[43%] p-4">
             <font-awesome-icon class="text-2xl" :icon="['fas', 'plus']"/>
         </div>
@@ -53,7 +53,7 @@ export default {
 
     data() {
         return {
-            modalShow: false
+            showAddNewModal: false
         }
     },
 
@@ -64,8 +64,12 @@ export default {
     emits: ['searchShow'],
 
     methods: {
-        showModal() {
-            this.modalShow = !this.modalShow;
+        showNewModal() {
+            this.showAddNewModal = true;
+        },
+        
+        closeModal() {
+            this.showAddNewModal = false;
         }
     }
 }
