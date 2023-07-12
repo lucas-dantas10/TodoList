@@ -3,6 +3,9 @@ import './style.css';
 import App from './App.vue';
 import router from './router/index.js';
 import store from './store';
+import VCalendar from 'v-calendar';
+import 'v-calendar/style.css';
+import dateBR from './filters/date.js';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { 
@@ -22,5 +25,10 @@ const app = createApp(App);
 app
     .use(store)
     .use(router)
+    .use(VCalendar, {})
     .component('font-awesome-icon', FontAwesomeIcon)
     .mount('#app');
+
+app.config.globalProperties.$filters = {
+    dateBR
+}
