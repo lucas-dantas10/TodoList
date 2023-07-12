@@ -1,7 +1,9 @@
 <template>
     <Transition name="bounce">
         <div class="w-screen h-screen z-10 flex flex-col items-center justify-center fixed" v-if="show">
-            <form class="w-[90%] bg-[#363636] flex flex-col justify-center shadow-md rounded px-8 pt-6 pb-8 mb-4">
+
+            <ModalCalendar :model-value="calendarShow" @close="closeCalendar()" @send-date="receiveDate" />
+            <form class="w-[90%] bg-[#363636] flex flex-col justify-center shadow-md rounded px-8 pt-6 pb-8 mb-4" v-show="isFormVisible">
                 <div class="mb-4">
                     <label class="block text-white text-xl font-bold mb-4" for="task">
                         Adicione uma Tarefa
@@ -18,7 +20,7 @@
 
                 <div class="mb-6">
                     <div class="flex flex-row gap-6 items-center">
-                        <font-awesome-icon class="text-2xl" :icon="['far', 'clock-four']" />
+                        <font-awesome-icon class="text-2xl" :icon="['far', 'clock-four']" @click.prevent="showCalendar()" />
                         <font-awesome-icon class="text-2xl" :icon="['fas', 'tag']" />
                     </div>
 
@@ -33,7 +35,7 @@
 
                     <button
                         class="hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-                        type="button">
+                        type="button" @click.prevent="submit()">
                         <ArrowRight />
                     </button>
                 </div>
@@ -45,26 +47,35 @@
 <script>
 import { computed } from 'vue';
 import ArrowRight from './ArrowRight.vue';
+import ModalCalendar from './ModalCalendar.vue';
 
 export default
     {
         components: {
-            ArrowRight
+            ArrowRight,
+            ModalCalendar
         },
 
         data() {
             return {
                 form: {
                     task: '',
-                    description: ''
-                }
+                    description: '',
+                    date: new Date()
+                },
+                calendarShow: false,
+                isFormVisible: true,
             }
         },
+
+        props: ['modelValue'],
+
+        emits: ['close', 'update:modelValue'],
 
         setup(props, { emit }) {
             const show = computed({
                 get: () => props.modelValue,
-                set: (value) => emit('update:modalValue', value)
+                set: (value) => emit('update:modelValue', value)
             });
 
             return {
@@ -72,9 +83,26 @@ export default
             }
         },
 
-        props: ['modelValue'],
+        methods: {
+            showCalendar() {
+                this.isFormVisible = false;
+                this.calendarShow = true;
+            },
 
-        emits: ['close', 'update:modelValue']
+            closeCalendar() {
+                this.isFormVisible = true;
+                this.calendarShow = false;
+            },
+
+            receiveDate(date) {
+                console.log(date);
+                this.form.date = date;  
+            },
+
+            submit() {
+                console.log(this.form);
+            }
+        }
     }
 </script>
 
