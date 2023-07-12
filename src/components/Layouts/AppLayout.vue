@@ -53,7 +53,7 @@ export default {
 
     data() {
         return {
-            showAddNewModal: false
+            showAddNewModal: false,
         }
     },
 
