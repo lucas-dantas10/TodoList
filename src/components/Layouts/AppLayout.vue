@@ -59,6 +59,7 @@ export default {
 
     mounted() {
         this.$store.dispatch('getCurrentUser');
+        this.$store.dispatch('getCategoriesUser');
     },
 
     emits: ['searchShow'],
