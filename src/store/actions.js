@@ -18,6 +18,16 @@ export function login({commit}, data) {
 export function registerUser({commit}, user) {
     return axiosClient.post('/create-account', user)
         .then(({data}) => {
-            console.log('foi');
+            return data;
         });
+}
+
+export function getCategoriesUser({commit}) {
+    return axiosClient.get('/categories')
+        .then(({data}) => {
+            commit('setCategory', data);
+        })
+        .catch(({response}) => {
+            console.log(response);
+        })
 }

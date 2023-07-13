@@ -13,5 +13,7 @@ export default {
     categories: {
         data: [],
         loading: false,
-    }
+    },
+
+    notifications: []
 }
