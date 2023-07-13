@@ -32,7 +32,8 @@
             </template>
 
             <template v-slot:buttonForm>
-                <div>
+                <div class="flex flex-row items-center justify-center gap-2">
+                    <Spinner :loading="isLoading" :full-page="false" />
                     <button type="submit" @click.prevent="register()" class="btn-main">Cadastrar</button>
                 </div>
             </template>
@@ -42,6 +43,7 @@
 
 <script>
 import CreateAccountLayout from '../../components/Layouts/CreateAccount/CreateAccountLayout.vue';
+import notify from '../../hooks/notify.js'
 
 export default {
     components: {
@@ -56,22 +58,27 @@ export default {
                 password: '',
                 confirmPassword: ''
             },
-            errorMsg: ''
+            errorMsg: '',
+            isLoading: false
         }
     },
 
     methods: {
         register() {
+            this.isLoading = true;
             this.$store.dispatch('registerUser', this.form)
-                .then(() => {
+                .then(({data}) => {
+                    notify("success", "Sucesso", "Usuário Cadastrado");
                     this.$router.push({name: 'Login'});
                 })
                 .catch(({response}) => {
+                    console.log(response);
                     this.errorMsg = response.data.message;
                     setTimeout(() => {
                         this.errorMsg = '';
                     }, 4000);   
                 })
+                .finally(() => this.isLoading = false);
         }
     }
 }

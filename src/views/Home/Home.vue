@@ -64,10 +64,12 @@
 
 <script>
 import AppLayout from '../../components/Layouts/AppLayout.vue';
+import ModalCalendar from '../../components/Modal/ModalCalendar.vue';
 
 export default {
     components: {
         AppLayout,
+        ModalCalendar
     },
 
     data() {

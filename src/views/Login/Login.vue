@@ -1,4 +1,5 @@
 <template>
+    <Notification></Notification>
     <LoginLayout :title="'Login'">
         <template v-slot:form>
             <form class="flex flex-col gap-6" autocomplete="on">
@@ -23,7 +24,7 @@
             <div>
                 <button type="button" @click.prevent="login()"
                     class="btn-main flex flex-row items-center justify-center gap-2">
-                    <Spinner :model-value="isLoading" :full-page="false" />
+                    <Spinner :loading="isLoading" :full-page="false" />
                     Entrar
                 </button>
             </div>
@@ -34,11 +35,13 @@
 <script>
 import LoginLayout from '../../components/Layouts/Login/LoginLayout.vue';
 import Spinner from '../../components/Spinner/Spinner.vue';
+import Notification from '../../components/Notification/Notification.vue';
 
 export default {
     components: {
         LoginLayout,
-        Spinner
+        Spinner,
+        Notification
     },
 
     data() {
