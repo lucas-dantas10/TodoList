@@ -3,6 +3,7 @@
         <div class="w-screen h-screen z-10 flex flex-col items-center justify-center fixed" v-if="show">
 
             <ModalCalendar :model-value="calendarShow" @close="closeCalendar()" @send-date="receiveDate" />
+            <ModalCategory :show-category="categoryShow" @close="closeCategory()" />
             <form class="w-[90%] bg-[#363636] flex flex-col justify-center shadow-md rounded px-8 pt-6 pb-8 mb-4" v-show="isFormVisible">
                 <div class="mb-4">
                     <label class="block text-white text-xl font-bold mb-4" for="task">
@@ -21,7 +22,7 @@
                 <div class="mb-6">
                     <div class="flex flex-row gap-6 items-center">
                         <font-awesome-icon class="text-2xl" :icon="['far', 'clock-four']" @click.prevent="showCalendar()" />
-                        <font-awesome-icon class="text-2xl" :icon="['fas', 'tag']" />
+                        <font-awesome-icon class="text-2xl" :icon="['fas', 'tag']" @click.prevent="showCategories()" />
                     </div>
 
                 </div>
@@ -48,12 +49,14 @@
 import { computed } from 'vue';
 import ArrowRight from './ArrowRight.vue';
 import ModalCalendar from './ModalCalendar.vue';
+import ModalCategory from './ModalCategory.vue';
 
 export default
     {
         components: {
             ArrowRight,
-            ModalCalendar
+            ModalCalendar,
+            ModalCategory
         },
 
         data() {
@@ -64,6 +67,7 @@ export default
                     date: new Date()
                 },
                 calendarShow: false,
+                categoryShow: false,
                 isFormVisible: true,
             }
         },
@@ -92,6 +96,16 @@ export default
             closeCalendar() {
                 this.isFormVisible = true;
                 this.calendarShow = false;
+            },
+
+            showCategories() {
+                this.isFormVisible = false;
+                this.categoryShow = true;
+            },
+
+            closeCategory() {
+                this.isFormVisible = true;
+                this.categoryShow = false;
             },
 
             receiveDate(date) {
