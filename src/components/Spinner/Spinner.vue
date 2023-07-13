@@ -17,8 +17,8 @@ import { computed } from 'vue';
 export default {
     setup(props, { emit }) {
         const show = computed({
-            get: () => props.modelValue,
-            set: (value) => emit('update:modelValue', value)
+            get: () => props.loading,
+            set: (value) => emit('update:loading', value)
         })
 
         return {
@@ -26,9 +26,9 @@ export default {
         }
     },
 
-    props: ['modelValue', 'fullPage'],
+    props: ['loading', 'fullPage'],
 
-    emits: ['update:modelValue']
+    emits: ['update:loading']
 }
 
 </script>
