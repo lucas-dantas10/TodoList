@@ -3,7 +3,7 @@
         <div class="w-screen h-screen z-10 flex flex-col items-center justify-center fixed" v-if="show">
 
             <ModalCalendar :model-value="calendarShow" @close="closeCalendar()" @send-date="receiveDate" />
-            <ModalCategory :show-category="categoryShow" @close="closeCategory()" />
+            <ModalCategory :show-category="categoryShow" @close="closeCategory()" @send-category="receiveCategory" />
             <form class="w-[90%] bg-[#363636] flex flex-col justify-center shadow-md rounded px-8 pt-6 pb-8 mb-4" v-show="isFormVisible">
                 <div class="mb-4">
                     <label class="block text-white text-xl font-bold mb-4" for="task">
@@ -11,7 +11,7 @@
                     </label>
                     <input
                         class="shadow appearance-none border border-white bg-[#363636] rounded w-full py-2 px-3 text-white leading-tight focus:outline-none focus:shadow-outline"
-                        id="task" type="text" placeholder="Tarefa" v-model.trim="form.task">
+                        id="task" type="text" placeholder="Tarefa" v-model.trim="form.title">
                 </div>
                 <div class="mb-6">
                     <input
@@ -25,6 +25,15 @@
                         <font-awesome-icon class="text-2xl" :icon="['fas', 'tag']" @click.prevent="showCategories()" />
                     </div>
 
+                </div>
+
+                <div class="mb-6 flex flex-col gap-2">
+                    <div v-if="form.date != ''">
+                        <p class="border-pink-300 rounded-md bg-pink-300 px-2 py-2">{{ form.date }}</p>
+                    </div>
+                    <div :class="`border-${form.category.color} rounded-md bg-${form.category.color} px-2 py-2`">
+                        <p>{{ form.category.name }}</p>
+                    </div>
                 </div>
 
                 <div class="flex items-center justify-between">
@@ -62,9 +71,10 @@ export default
         data() {
             return {
                 form: {
-                    task: '',
+                    title: '',
                     description: '',
-                    date: new Date()
+                    date: '',
+                    category: ''
                 },
                 calendarShow: false,
                 categoryShow: false,
@@ -109,12 +119,21 @@ export default
             },
 
             receiveDate(date) {
-                console.log(date);
                 this.form.date = date;  
             },
 
+            receiveCategory(category) {
+                this.form.category = category;
+            },
+
             submit() {
-                console.log(this.form);
+                this.$store.dispatch('registerTask', this.form);
+                    // .then(({data}) => {
+                    //     console.log(data);
+                    // })
+                    // .catch(({response}) => {
+                    //     console.log(response);
+                    // })
             }
         }
     }
