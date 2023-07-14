@@ -28,7 +28,7 @@ export function getCategoriesUser({commit}) {
             commit('setCategory', data);
         })
         .catch(({response}) => {
-            console.log(response);
+            // console.log(response);
         })
 }
 
