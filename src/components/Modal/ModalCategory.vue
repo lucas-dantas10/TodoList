@@ -1,14 +1,17 @@
 <template>
     <div class="w-[90%] h-[50%] bg-[#363636]" v-if="appearCategory">
-        <div class="flex flex-col items-center justify-between gap-10">
+        <input type="hidden" class="bg-categoryBlue">
+        <input type="hidden" class="bg-categoryPinkLess">
+        <input type="hidden" class="bg-categoryGreenWater">
+        <div class="h-[100%] flex flex-col items-center justify-between gap-10">
 
             <div class="text-center p-6 border-b w-[90%]">
                 <h1 class="text-center text-xl">Escolha a Categoria</h1>
             </div>
 
-            <div class="w-[90%] h-35vh mt-2 flex flex-row flex-wrap items-center justify-center gap-10">
-                <div class="flex flex-col justify-center items-center gap-2" v-for="(category, index) in categories" :key="index">
-                    <div :class="`w-20 h-16 rounded-md flex items-center justify-center bg-[${category.color}]`">
+            <div class="w-[90%] h-[100%] mt-2 flex flex-row flex-wrap items-start justify-center gap-10">
+                <div class="flex flex-col justify-center items-center gap-2" v-for="(category, index) in categories" :key="index" @click.prevent="addCategoryInTask(category)">
+                    <div :class="`w-20 h-16 rounded-md flex items-center justify-center bg-${category.color}`">
                         <font-awesome-icon class="text-2xl" :icon="['fas', category.icon]" />
                     </div>
 
@@ -19,7 +22,7 @@
                 
             </div>
 
-            <div class="w-[90%] flex flex-row justify-between items-center">
+            <div class="w-[90%] flex flex-row justify-between items-center p-4">
                 <a class="inline-block align-baseline font-bold text-sm text-[#8687E7] hover:text-blue-800" href="#"
                     @click="$emit('close', false)">
                     Fechar
@@ -41,7 +44,7 @@ import { computed } from 'vue';
 export default {
     props: ['showCategory'],
 
-    emits: ['update:showCategory', 'close'],
+    emits: ['update:showCategory', 'close', 'sendCategory'],
 
     setup(props, { emit }) {
         const appearCategory = computed({
@@ -51,6 +54,13 @@ export default {
 
         return {
             appearCategory
+        }
+    },
+
+    methods: {
+        addCategoryInTask(category) {
+            this.$emit('sendCategory', category);
+            this.$emit('close', false);
         }
     },
 
