@@ -23,11 +23,21 @@ export function registerUser({commit}, user) {
 }
 
 export function getCategoriesUser({commit}) {
-    return axiosClient.get('/categories')
+    return axiosClient.get('/category')
         .then(({data}) => {
             commit('setCategory', data);
         })
         .catch(({response}) => {
             console.log(response);
         })
+}
+
+export function registerTask({commit}, task) {
+    return axiosClient.post('/task', task)
+        .then(({data}) => {
+            console.log(data);
+        })
+        .catch(({response}) => {
+            console.log(response);
+        });
 }

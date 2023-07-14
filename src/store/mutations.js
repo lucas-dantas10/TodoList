@@ -15,8 +15,10 @@ export function setCategory(state, {data}) {
     data.forEach(category => {
         state.categories.data.push(category);
     });
-    
-    console.log(state.categories.data);
+}
+
+export function setTask(state, task) {
+    state.tasks.data.push(task);
 }
 
 export function notify(state, notification) {
