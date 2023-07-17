@@ -5,7 +5,7 @@
         </div>
     </div>
 
-    <div v-if="show && fullPage == true" class="w-screen h-screen flex justify-center items-center">
+    <div v-if="show && fullPage == true" class="w-screen h-screen flex justify-center items-center absolute bg-black z-10 opacity-[0.9]">
         <div class="inline-block h-[4.5rem] w-[4.5rem] animate-spin rounded-full border-4 border-solid border-current border-r-transparent align-[-0.125em] motion-reduce:animate-[spin_1.5s_linear_infinite]"
             role="status">
         </div>
