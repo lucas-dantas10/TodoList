@@ -34,14 +34,17 @@ export function getCategoriesUser({commit}) {
         })
 }
 
-export function getTasks({commit}, data) {
+export function getTasks({commit, state}, data) {
+    state.tasks.loading = true;
     return axiosClient.get('/task')
         .then(({data}) => {
             commit('setTasks', data.tasks);
         })
+        .finally(() => state.tasks.loading = false);
 }
 
-export function registerTask({commit}, task) {
+export function registerTask({commit, state}, task) {
+    state.tasks.loading = true;
     return axiosClient.post('/task', task)
         .then(({data}) => {
             commit('setTask', data.task);
@@ -49,6 +52,7 @@ export function registerTask({commit}, task) {
             return data;
         })
         .catch(({response}) => {
-            console.log(response);
-        });
+            // console.log(response);
+        })
+        .finally(() => state.tasks.loading = false);
 }
