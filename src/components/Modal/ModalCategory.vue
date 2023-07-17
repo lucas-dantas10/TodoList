@@ -3,13 +3,13 @@
         <input type="hidden" class="bg-categoryBlue">
         <input type="hidden" class="bg-categoryPinkLess">
         <input type="hidden" class="bg-categoryGreenWater">
-        <div class="h-[100%] flex flex-col items-center justify-between gap-10">
+        <div class="h-[100%] flex flex-col items-center justify-between gap-8">
 
             <div class="text-center p-6 border-b w-[90%]">
                 <h1 class="text-center text-xl">Escolha a Categoria</h1>
             </div>
 
-            <div class="w-[90%] h-[100%] mt-2 flex flex-row flex-wrap items-start justify-center gap-10">
+            <div class="w-[90%] h-[100%] mt-2 flex flex-row flex-wrap items-start justify-center gap-6">
                 <div class="flex flex-col justify-center items-center gap-2" v-for="(category, index) in categories" :key="index" @click.prevent="addCategoryInTask(category)">
                     <div :class="`w-20 h-16 rounded-md flex items-center justify-center bg-${category.color}`">
                         <font-awesome-icon class="text-2xl" :icon="['fas', category.icon]" />
@@ -20,17 +20,6 @@
                     </div>
                 </div>
                 
-            </div>
-
-            <div class="w-[90%] flex flex-row justify-between items-center p-4">
-                <a class="inline-block align-baseline font-bold text-sm text-[#8687E7] hover:text-blue-800" href="#"
-                    @click="$emit('close', false)">
-                    Fechar
-                </a>
-
-                <button class="border-blue-700 rounded-md py-2 px-4 bg-blue-700">
-                    Adicionar
-                </button>
             </div>
 
 
