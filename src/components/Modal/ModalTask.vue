@@ -127,13 +127,19 @@ export default
             },
 
             submit() {
-                this.$store.dispatch('registerTask', this.form);
-                    // .then(({data}) => {
-                    //     console.log(data);
-                    // })
-                    // .catch(({response}) => {
-                    //     console.log(response);
-                    // })
+                this.$store.dispatch('registerTask', this.form)
+                    .then(({data}) => {
+                        this.form = {
+                            title: '',
+                            description: '',
+                            date: '',
+                            category: ''
+                        };
+                        this.$emit('close', false);
+                    })
+                    .catch(({response}) => {
+                        // console.log(response);
+                    });
             }
         }
     }
