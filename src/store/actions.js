@@ -1,4 +1,5 @@
 import axiosClient from "../axios";
+import notify from '../hooks/notify.js';
 
 export function getCurrentUser({ commit }) {
     return axiosClient.get('/current-user')
@@ -10,6 +11,7 @@ export function login({commit}, data) {
         .then(({data}) => {
             commit('setToken', data.token);
             commit('setUser', data.user);
+            commit('setVisited');
 
             return data;
         })
@@ -32,10 +34,19 @@ export function getCategoriesUser({commit}) {
         })
 }
 
+export function getTasks({commit}, data) {
+    return axiosClient.get('/task')
+        .then(({data}) => {
+            commit('setTasks', data.tasks);
+        })
+}
+
 export function registerTask({commit}, task) {
     return axiosClient.post('/task', task)
         .then(({data}) => {
-            console.log(data);
+            commit('setTask', data.task);
+            notify("success", "Sucesso", data.message);
+            return data;
         })
         .catch(({response}) => {
             console.log(response);
