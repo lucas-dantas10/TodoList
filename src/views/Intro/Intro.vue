@@ -11,5 +11,9 @@
         components: {
             Carousel
         },
+
+        mounted() {
+            this.$store.commit('setVisited');
+        }
     }
 </script>
