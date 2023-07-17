@@ -10,7 +10,10 @@ const routes = [
     {
         name: 'Intro',
         path: '/',
-        component: Intro
+        component: Intro,
+        meta: {
+            visitedGuard: true
+        }
     },
     {
         name: 'Welcome',
@@ -48,7 +51,12 @@ router.beforeEach((to, from, next) => {
         next({ name: 'Login' });
     }
 
+    if (to.meta.visitedGuard && store.state.user.visited) {
+        next({name: 'Welcome'});
+    }
+
     next();
-})
+    
+});
 
 export default router;
