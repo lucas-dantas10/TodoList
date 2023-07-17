@@ -1,4 +1,5 @@
 <template>
+    <Notification />
     <div class="w-full h-full">
         <AppLayout @search-show="changeShow()">
             <div class="w-full h-full flex items-center justify-center" v-if="!tasks.length">
@@ -34,7 +35,7 @@
                         </div>
                     </div>
 
-                    <div class="w-full h-[20%] flex flex-row items-center py-2 px-4 bg-[#363636] rounded-md" v-for="t in task">
+                    <div class="w-full h-[20%] flex flex-row items-center py-2 px-4 bg-[#363636] rounded-md" v-for="t in tasks">
                         <div class="w-[15%] h-full flex justify-center items-center">
                             <input type="radio" class="w-6 h-6">
                         </div>
@@ -43,12 +44,12 @@
                                 <p class="text-xl">{{ t.title }}</p>
                             </div>
                             <div class="w-full flex flex-row justify-between items-center">
-                                <div class="text-gray-400">{{ t.hour }}</div>
+                                <div class="text-gray-400">{{ t.date }}</div>
                                 <div class="flex flex-row gap-6">
                                     <div
-                                        class="flex flex-row items-center justify-center gap-2 border border-blue-500 bg-blue-500 rounded-md px-2 py-2">
+                                        :class="`flex flex-row items-center justify-center gap-2 border-${t.color_category} bg-${t.color_category} rounded-md px-2 py-2`">
                                         <font-awesome-icon :icon="['fas', 'graduation-cap']" />
-                                        <p>{{t.type}}</p>
+                                        <p>{{t.name_category}}</p>
                                     </div>
                                 </div>
                             </div>
@@ -65,28 +66,18 @@
 <script>
 import AppLayout from '../../components/Layouts/AppLayout.vue';
 import ModalCalendar from '../../components/Modal/ModalCalendar.vue';
+import Notification from '../../components/Notification/Notification.vue';
 
 export default {
     components: {
         AppLayout,
-        ModalCalendar
+        ModalCalendar,
+        Notification
     },
 
     data() {
         return {
             searchShow: false,
-            task: [
-                {
-                    title: 'Do Math Work',
-                    hour: 'Today at 18:40',
-                    type: 'Universidade'
-                },
-                {
-                    title: 'Do Math Work',
-                    hour: 'Today at 18:40',
-                    type: 'Universidade'
-                },
-            ]
         }
     },
 
@@ -98,7 +89,7 @@ export default {
 
     computed: {
         tasks() {
-            return this.$store.state.tasks;
+            return this.$store.state.tasks.data;
         }
     }
 }
