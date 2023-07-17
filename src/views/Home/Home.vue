@@ -1,5 +1,6 @@
 <template>
     <Notification />
+    <Spinner :loading="isLoading" :full-page="true" />
     <div class="w-full h-full">
         <AppLayout @search-show="changeShow()">
             <div class="w-full h-full flex items-center justify-center" v-if="!tasks.length">
@@ -67,12 +68,14 @@
 import AppLayout from '../../components/Layouts/AppLayout.vue';
 import ModalCalendar from '../../components/Modal/ModalCalendar.vue';
 import Notification from '../../components/Notification/Notification.vue';
+import Spinner from '../../components/Spinner/Spinner.vue';
 
 export default {
     components: {
         AppLayout,
         ModalCalendar,
-        Notification
+        Notification,
+        Spinner
     },
 
     data() {
@@ -90,6 +93,10 @@ export default {
     computed: {
         tasks() {
             return this.$store.state.tasks.data;
+        },
+
+        isLoading() {
+            return this.$store.state.tasks.loading;
         }
     }
 }
