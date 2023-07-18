@@ -58,13 +58,12 @@ export function registerTask({commit, state}, task) {
 }
 
 export function filterDateOfTasks({commit, state}, date) {
-    return axiosClient.get(`/tasks/filter`, {
-        params: {
-            date: date
-        }
-    })
+    state.tasks.loading = true;
+    return axiosClient.post('/tasks/filter', {date: date})
         .then(({data}) => {
-            console.log(data);
+            commit('setTasks', data.tasks);
+            return data;
         })
-        .catch(({response}) => console.log(response))
+        .catch(({response}) => response)
+        .finally(() => state.tasks.loading = false);
 }
