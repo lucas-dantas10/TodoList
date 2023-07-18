@@ -52,7 +52,19 @@ export function registerTask({commit, state}, task) {
             return data;
         })
         .catch(({response}) => {
-            // console.log(response);
+            return response;
         })
         .finally(() => state.tasks.loading = false);
+}
+
+export function filterDateOfTasks({commit, state}, date) {
+    return axiosClient.get(`/tasks/filter`, {
+        params: {
+            date: date
+        }
+    })
+        .then(({data}) => {
+            console.log(data);
+        })
+        .catch(({response}) => console.log(response))
 }
