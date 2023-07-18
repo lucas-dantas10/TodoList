@@ -1,6 +1,6 @@
 <template>
     <Transition name="bounce">
-        <div class="w-screen h-screen z-10 flex flex-col items-center justify-center fixed" v-if="show">
+        <div class="w-screen h-screen z-10 flex flex-col items-center justify-center fixed background-modal" v-if="show">
 
             <ModalCalendar :model-value="calendarShow" @close="closeCalendar()" @send-date="receiveDate" />
             <ModalCategory :show-category="categoryShow" @close="closeCategory()" @send-category="receiveCategory" />

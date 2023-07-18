@@ -39,7 +39,7 @@ export default {
 
     methods: {
         saveDate() {
-            this.date = this.$filters.dateBR(this.date);
+            this.date = this.$filters.dateISO(this.date);
             this.$emit('sendDate', this.date);
             this.$emit('close', false);
         }
