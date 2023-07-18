@@ -10,7 +10,9 @@
             <h1 class="text-2xl">Home</h1>
         </div>
         <div class="border border-primary rounded-full w-10 h-10">
-            <img src="https://randomuser.me/api/portraits/men/1.jpg" class="border border-primary rounded-full"
+            <!-- <img src="https://randomuser.me/api/portraits/men/1.jpg" class="border border-primary rounded-full"
+                alt="Imagem de perfil de um homem"> -->
+            <img src="/todo.svg" class="border border-primary rounded-full"
                 alt="Imagem de perfil de um homem">
         </div>
     </header>
@@ -20,10 +22,10 @@
     </main>
 
     <footer class="w-full flex flex-row items-center justify-between p-6 bg-[#363636] relative">
-        <div class="flex flex-col items-center justify-center w-[15%]">
+        <router-link :to="{name: 'Home'}" class="flex flex-col items-center justify-center w-[15%]">
             <font-awesome-icon class="text-2xl" :icon="['fas', 'house']" />
             <h3 class="text-lg-">Home</h3>
-        </div>
+        </router-link>
         <div class="flex flex-col items-center justify-center w-[15%]">
             <font-awesome-icon class="text-2xl" :icon="['fas', 'calendar-days']" />
             <h3 class="text-lg-">Calendario</h3>
