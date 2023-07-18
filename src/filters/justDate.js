@@ -1,4 +1,4 @@
-export default function date(value) {
+export default function justDate(value) {
   if (value === null) {
     return null;
   }
@@ -9,11 +9,6 @@ export default function date(value) {
   let month = date.getMonth() + 1;
   let day = date.getDate();
 
-  let horas = date.getHours();
-  let minutos = date.getMinutes();
-  var horaFormatada = ("0" + horas).slice(-2);
-  var minutoFormatado = ("0" + minutos).slice(-2);
-
   if (month < 10) {
     month = `0${month}`;
   }
@@ -22,7 +17,7 @@ export default function date(value) {
     day = `0${day}`;
   }
 
-  const dateFormated = `${year}-${month}-${day} ${horaFormatada}:${minutoFormatado}`;
+  const dateFormated = `${year}-${month}-${day}`;
 
   return dateFormated;
 }
