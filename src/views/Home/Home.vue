@@ -36,9 +36,9 @@
                                     <option :value="$filters.justDate(new Date())" selected>
                                         Hoje
                                     </option>
-                                    <option>
+                                    <!-- <option>
                                         Ontem
-                                    </option>
+                                    </option> -->
                                 </select>
                             </div>
                         </div>
@@ -102,6 +102,9 @@ export default {
         },
 
         verifyDate() {
+            if (this.daysOptions === '') {
+                this.$store.dispatch('getTasks');
+            }
             this.$store.dispatch('filterDateOfTasks', this.daysOptions);
         }
     },
