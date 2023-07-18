@@ -5,7 +5,9 @@ import router from './router/index.js';
 import store from './store';
 import VCalendar from 'v-calendar';
 import 'v-calendar/style.css';
-import dateBR from './filters/date.js';
+import dateISO from './filters/dateTime.js';
+import date from './filters/date.js';
+import justDate from './filters/justDate.js';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { 
@@ -30,5 +32,7 @@ app
     .mount('#app');
 
 app.config.globalProperties.$filters = {
-    dateBR
+    dateISO,
+    date,
+    justDate
 }
