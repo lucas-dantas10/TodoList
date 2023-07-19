@@ -39,6 +39,7 @@ export function getTasks({commit, state}, data) {
     return axiosClient.get('/task')
         .then(({data}) => {
             commit('setTasks', data.tasks);
+            state.tasks.length = data.tasks.length;
         })
         .finally(() => state.tasks.loading = false);
 }
@@ -64,6 +65,9 @@ export function filterDateOfTasks({commit, state}, date) {
             commit('setTasks', data.tasks);
             return data;
         })
-        .catch(({response}) => response)
+        .catch(({response}) => {
+            notify('warning', "Warning", response.data.message);
+            return response;
+        })
         .finally(() => state.tasks.loading = false);
 }
