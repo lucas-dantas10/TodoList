@@ -1,10 +1,10 @@
 <template>
     <TransitionGroup name="list" tag="ul">
         <article role="alert" class="notificacoes " v-for="(notification, index) in notifications" :key="index">
-            <div class="bg-green-500 text-black font-bold rounded-t px-4 py-2">
+            <div class="text-black font-bold rounded-t px-4 py-2" :class="notification.type === 'success' ? 'bg-green-500' : 'bg-yellow-500'">
                 {{ notification.title }}
             </div>
-            <div class="border border-t-0 border-teal-100 rounded-b bg-teal-100 px-4 py-3 text-black">
+            <div class="border border-t-0 rounded-b px-4 py-3 text-black" :class="notification.type === 'success' ? 'bg-teal-100' : 'bg-yellow-100'">
                 <p>{{ notification.text }}</p>
             </div>
         </article>
