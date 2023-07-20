@@ -34,13 +34,15 @@ export function getCategoriesUser({commit}) {
         })
 }
 
-export function getTasks({commit, state}, data) {
+export function getTasks({commit, state}, task) {
     state.tasks.loading = true;
     return axiosClient.get('/task')
         .then(({data}) => {
             commit('setTasks', data.tasks);
             state.tasks.length = data.tasks.length;
+            return data;
         })
+        .catch(({response}) => console.log(response))
         .finally(() => state.tasks.loading = false);
 }
 
