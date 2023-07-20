@@ -9,7 +9,7 @@
                 <h1 class="text-center text-xl">Escolha a Categoria</h1>
             </div>
 
-            <div class="w-[90%] h-[50%] flex flex-row flex-wrap items-start gap-[2.8rem]">
+            <div class="w-[90%] h-[50%] flex flex-row flex-wrap items-start gap-[2.3rem]">
                 <div class="flex flex-col items-center gap-2" v-for="(category, index) in categories" :key="index"
                     @click.prevent="addCategoryInTask(category)">
                     <div :class="`w-20 h-16 rounded-md flex items-center justify-center bg-${category.color}`">
@@ -21,7 +21,7 @@
                     </div>
                 </div>
 
-                <router-link :to="{name: 'Login'}">
+                <router-link :to="{name: 'Category'}">
                     <div class="flex flex-col items-center gap-2">
                         <div class="w-20 h-16 rounded-md flex items-center justify-center bg-[#80FFD1]">
                             <font-awesome-icon class="text-2xl text-[#00A369]" :icon="['fas', 'plus']" />
