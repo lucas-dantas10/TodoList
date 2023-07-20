@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from "vue-router";
 import store from '../store';
+import Category from '../views/Category/Category.vue';
 const Intro = () => import("../views/Intro/Intro.vue");
 const Welcome = () => import("../views/Intro/Welcome.vue");
 const Login = () => import("../views/Login/Login.vue");
@@ -37,6 +38,11 @@ const routes = [
         meta: {
             requiresAuth: true
         }
+    },
+    {
+        name: 'Category',
+        path: '/category',
+        component: Category
     }
 ];
 
