@@ -28,7 +28,7 @@
                         <div class="w-[30%]">
                             <div
                                 class="w-full flex flex-row px-4 py-2 gap-2 border border-[#363636] bg-[#363636] rounded-lg">
-                                <select class="w-full bg-[#363636] flex flex-row items-center gap-2" v-model.trim="daysOptions" @change="verifyDate()">
+                                <select class="w-full bg-[#363636] flex flex-row items-center gap-2" v-model.trim="daysOptions" @change.prevent="verifyDate()">
                                     <option value="" selected>
                                         Todas
                                         <font-awesome-icon :icon="['fas', 'chevron-down']" />
@@ -36,9 +36,9 @@
                                     <option :value="$filters.justDate(new Date())" selected>
                                         Hoje
                                     </option>
-                                    <!-- <option>
+                                    <option :value="subDate">
                                         Ontem
-                                    </option> -->
+                                    </option>
                                 </select>
                             </div>
                         </div>
@@ -92,7 +92,8 @@ export default {
     data() {
         return {
             searchShow: false,
-            daysOptions: ''
+            daysOptions: '',
+            subDate: this.$filters.justDate(new Date().setDate(new Date().getDate() - 1))
         }
     },
 
@@ -104,6 +105,7 @@ export default {
         verifyDate() {
             if (this.daysOptions === '') {
                 this.$store.dispatch('getTasks');
+                return;
             }
             this.$store.dispatch('filterDateOfTasks', this.daysOptions);
         }
