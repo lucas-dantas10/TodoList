@@ -30,7 +30,7 @@ export function getCategoriesUser({commit}) {
             commit('setCategory', data);
         })
         .catch(({response}) => {
-            // console.log(response);
+            return response;
         })
 }
 
@@ -54,9 +54,7 @@ export function registerTask({commit, state}, task) {
             notify("success", "Sucesso", data.message);
             return data;
         })
-        .catch(({response}) => {
-            return response;
-        })
+        .catch(({response}) => response)
         .finally(() => state.tasks.loading = false);
 }
 
@@ -68,8 +66,21 @@ export function filterDateOfTasks({commit, state}, date) {
             return data;
         })
         .catch(({response}) => {
-            notify('warning', "Warning", response.data.message);
+            notify('warning', "Atenção", response.data.message);
             return response;
         })
         .finally(() => state.tasks.loading = false);
+}
+
+export function registerCategory({commit, state}, category) {
+    state.categories.loading = true;
+    return axiosClient.post('/category', category)
+        .then(({data}) => {
+            commit('setNewCategory', data);
+            notify("success", "Sucesso", data.message);
+        })
+        .catch(({response}) => {
+            notify('warning', "Atenção", response.data.message);
+        })
+        .finally(() => state.categories.loading = false);
 }
