@@ -31,6 +31,10 @@ export function setCategory(state, {data}) {
     });
 }
 
+export function setNewCategory(state, category) {
+    state.categories.data.push(category);
+}
+
 export function setTask(state, task) {
     state.tasks.data.push(task);
 }
