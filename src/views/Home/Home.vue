@@ -28,7 +28,8 @@
                         <div class="w-[30%]">
                             <div
                                 class="w-full flex flex-row px-4 py-2 gap-2 border border-[#363636] bg-[#363636] rounded-lg">
-                                <select class="w-full bg-[#363636] flex flex-row items-center gap-2" v-model.trim="daysOptions" @change.prevent="verifyDate()">
+                                <select class="w-full bg-[#363636] flex flex-row items-center gap-2"
+                                    v-model.trim="daysOptions" @change.prevent="verifyDate()">
                                     <option value="" selected>
                                         Todas
                                         <font-awesome-icon :icon="['fas', 'chevron-down']" />
@@ -55,8 +56,8 @@
                                 <div class="w-full flex flex-row justify-between items-center">
                                     <div class="text-gray-400">{{ $filters.date(t.date) }}</div>
                                     <div class="flex flex-row gap-6">
-                                        <div
-                                            :class="`flex flex-row items-center justify-center gap-2 border-${t.color_category} bg-${t.color_category} rounded-md px-2 py-2`">
+                                        <div :class="`flex flex-row items-center justify-center gap-2 rounded-md px-2 py-2`"
+                                            :style="{ backgroundColor: t.color_category, borderColor: t.color_category }">
                                             <font-awesome-icon :icon="['fas', 'graduation-cap']" />
                                             <p>{{ t.name_category }}</p>
                                         </div>
