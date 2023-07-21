@@ -1,8 +1,5 @@
 <template>
     <div class="w-[90%] h-[50%] bg-[#363636]" v-if="appearCategory">
-        <input type="hidden" class="bg-categoryBlue">
-        <input type="hidden" class="bg-categoryPinkLess">
-        <input type="hidden" class="bg-categoryGreenWater">
         <div class="h-[100%] flex flex-col items-center gap-4">
 
             <div class="text-center p-6 border-b w-[90%]">
@@ -12,7 +9,7 @@
             <div class="w-[90%] h-[50%] flex flex-row flex-wrap items-start gap-[2.3rem]">
                 <div class="flex flex-col items-center gap-2" v-for="(category, index) in categories" :key="index"
                     @click.prevent="addCategoryInTask(category)">
-                    <div :class="`w-20 h-16 rounded-md flex items-center justify-center bg-${category.color}`">
+                    <div class="w-20 h-16 rounded-md flex items-center justify-center" :style="{backgroundColor: category.color}">
                         <font-awesome-icon class="text-2xl" :icon="['fas', category.icon]" />
                     </div>
 

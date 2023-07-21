@@ -31,7 +31,7 @@
                     <div v-if="form.date != ''">
                         <p class="border-pink-300 rounded-md bg-pink-300 px-2 py-2">{{ form.date }}</p>
                     </div>
-                    <div :class="`border-${form.category.color} rounded-md bg-${form.category.color} px-2 py-2`">
+                    <div :class="`rounded-md px-2 py-2`" :style="{backgroundColor: form.category.color, borderColor: form.category.color}">
                         <p>{{ form.category.name }}</p>
                     </div>
                 </div>
