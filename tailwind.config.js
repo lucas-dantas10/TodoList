@@ -5,9 +5,6 @@ export default {
     extend: {
       colors: {
         primary: "var(--primary)",
-        categoryPinkLess: "#FF9680",
-        categoryGreenWater: "#80FFFF",
-        categoryBlue: "#809CFF"
       },
       keyframes: {
         "fade-in-down": {
