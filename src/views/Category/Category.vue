@@ -98,7 +98,7 @@ export default {
 
     computed: {
         isLoading() {
-            this.$store.state.categories.loading;
+            return this.$store.state.categories.loading;
         }
     }
 }
