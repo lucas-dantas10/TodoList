@@ -27,7 +27,7 @@ export function registerUser({commit}, user) {
 export function getCategoriesUser({commit}) {
     return axiosClient.get('/category')
         .then(({data}) => {
-            commit('setCategory', data);
+            commit('setCategory', data.data);
         })
         .catch(({response}) => {
             return response;
@@ -83,4 +83,14 @@ export function registerCategory({commit, state}, category) {
             notify('warning', "Atenção", response.data.message);
         })
         .finally(() => state.categories.loading = false);
+}
+
+export function searchTask({commit, state}, task) {
+    return axiosClient.post('/tasks/filter/name', task)
+        .then(({data}) => {
+            commit('setTasks', data.tasks)
+        })
+        .catch(({response}) => {
+            notify("warning", "Atenção", response.data.message);
+        })
 }
