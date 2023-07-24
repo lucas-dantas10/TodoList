@@ -17,12 +17,12 @@
 
             <div class="w-full h-[90%] flex justify-center overflow-auto" v-else>
                 <div class="flex flex-col gap-4 w-[85%]">
-                    <div class="w-full flex flex-row items-center gap-8 relative animate-fade-in-down" v-if="searchShow">
+                    <form class="w-full flex flex-row items-center gap-8 relative animate-fade-in-down" v-if="searchShow" @submit.prevent="searchTask()">
                         <font-awesome-icon class="absolute text-2xl px-3" :icon="['fas', 'magnifying-glass']" />
-                        <input type="text"
+                        <input type="text" v-model.trim="taskSearch"
                             class="w-full bg-primary border border-gray-400 px-11 py-2 rounded-md placeholder:text-gray-400 placeholder:text-lg focus:outline-indigo-600"
                             placeholder="Procure pela sua tarefa...">
-                    </div>
+                    </form>
 
                     <div class="w-[100%] h-[100%] flex flex-col gap-[1rem]">
                         <div class="w-[30%]">
@@ -66,13 +66,9 @@
                             </div>
                         </div>
                     </div>
-
-
                 </div>
             </div>
         </AppLayout>
-
-
     </div>
 </template>
 
@@ -94,6 +90,7 @@ export default {
         return {
             searchShow: false,
             daysOptions: '',
+            taskSearch: '',
             subDate: this.$filters.justDate(new Date().setDate(new Date().getDate() - 1))
         }
     },
@@ -109,7 +106,12 @@ export default {
                 return;
             }
             this.$store.dispatch('filterDateOfTasks', this.daysOptions);
+        },
+
+        searchTask() {
+            this.$store.dispatch('searchTask', {taskSearch: this.taskSearch});
         }
+
     },
 
     computed: {
