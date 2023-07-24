@@ -1,12 +1,11 @@
 <template>
     <div class="w-[90%] h-[50%] bg-[#363636]" v-if="appearCategory">
         <div class="h-[100%] flex flex-col items-center gap-4">
-
             <div class="text-center p-6 border-b w-[90%]">
                 <h1 class="text-center text-xl">Escolha a Categoria</h1>
             </div>
 
-            <div class="w-[90%] h-[50%] flex flex-row flex-wrap items-start gap-[2.3rem]">
+            <div class="w-[90%] h-[60%] flex flex-row flex-wrap items-start gap-[2.3rem] overflow-scroll">
                 <div class="flex flex-col items-center gap-2" v-for="(category, index) in categories" :key="index"
                     @click.prevent="addCategoryInTask(category)">
                     <div class="w-20 h-16 rounded-md flex items-center justify-center" :style="{backgroundColor: category.color}">
@@ -29,12 +28,7 @@
                         </div>
                     </div>
                 </router-link>
-
-
-
             </div>
-
-
         </div>
     </div>
 </template>
