@@ -25,10 +25,8 @@ export function setUser(state, user) {
     state.user.data = user;
 }
 
-export function setCategory(state, {data}) {
-    data.forEach(category => {
-        state.categories.data.push(category);
-    });
+export function setCategory(state, categories) {
+    state.categories.data = categories;
 }
 
 export function setNewCategory(state, category) {
