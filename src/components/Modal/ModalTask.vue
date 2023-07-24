@@ -21,8 +21,8 @@
 
                 <div class="mb-6">
                     <div class="flex flex-row gap-6 items-center">
-                        <font-awesome-icon class="text-2xl" :icon="['far', 'clock-four']" @click.prevent="showCalendar()" />
-                        <font-awesome-icon class="text-2xl" :icon="['fas', 'tag']" @click.prevent="showCategories()" />
+                        <font-awesome-icon class="text-2xl" :icon="['far', 'clock-four']" @click.prevent="showCalendar()" tabindex="0" aria-label="Ícone de um relógio" />
+                        <font-awesome-icon class="text-2xl" :icon="['fas', 'tag']" @click.prevent="showCategories()" tabindex="0" aria-label="Ícone de uma Tag" />
                     </div>
 
                 </div>
@@ -45,7 +45,7 @@
 
                     <button
                         class="hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-                        type="button" @click.prevent="submit()">
+                        type="button" @click.prevent="submit()" tabindex="0">
                         <ArrowRight />
                     </button>
                 </div>
