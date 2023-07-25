@@ -79,12 +79,7 @@ import Notification from '../../components/Notification/Notification.vue';
 import Spinner from '../../components/Spinner/Spinner.vue';
 
 export default {
-    components: {
-        AppLayout,
-        ModalCalendar,
-        Notification,
-        Spinner
-    },
+    components: { AppLayout, ModalCalendar, Notification, Spinner },
 
     data() {
         return {
