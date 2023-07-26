@@ -3,7 +3,7 @@
     <Spinner :loading="isLoading" :full-page="true" />
     <div class="w-full h-full">
         <AppLayout @search-show="changeShow()">
-            <div class="w-full h-full flex items-center justify-center" v-if="!tasks.length">
+            <div class="w-full h-full flex items-center justify-center" v-if="!$store.state.tasks.length">
                 <div class="flex flex-col items-center justify-center">
                     <div>
                         <img src="../../assets/checklist.svg" alt="">
@@ -15,56 +15,96 @@
                 </div>
             </div>
 
-            <div class="w-full h-[90%] flex justify-center overflow-auto" v-else>
+            <div class="w-full h-[90%] flex justify-center" v-else>
                 <div class="flex flex-col gap-4 w-[85%]">
-                    <form class="w-full flex flex-row items-center gap-8 relative animate-fade-in-down" v-if="searchShow" @submit.prevent="searchTask()">
+                    <form class="w-full flex flex-row items-center gap-8 relative animate-fade-in-down" v-if="searchShow"
+                        @submit.prevent="searchTask()">
                         <font-awesome-icon class="absolute text-2xl px-3" :icon="['fas', 'magnifying-glass']" />
                         <input type="text" v-model.trim="taskSearch"
                             class="w-full bg-primary border border-gray-400 px-11 py-2 rounded-md placeholder:text-gray-400 placeholder:text-lg focus:outline-indigo-600"
                             placeholder="Procure pela sua tarefa...">
                     </form>
 
-                    <div class="w-[100%] h-[100%] flex flex-col gap-[1rem]">
-                        <div class="w-[30%]">
-                            <div
-                                class="w-full flex flex-row px-4 py-2 gap-2 border border-[#363636] bg-[#363636] rounded-lg">
-                                <select class="w-full bg-[#363636] flex flex-row items-center gap-2"
-                                    v-model.trim="daysOptions" @change.prevent="verifyDate()">
-                                    <option value="" selected>
-                                        Todas
-                                        <font-awesome-icon :icon="['fas', 'chevron-down']" />
-                                    </option>
-                                    <option :value="$filters.justDate(new Date())" selected>
-                                        Hoje
-                                    </option>
-                                    <option :value="subDate">
-                                        Ontem
-                                    </option>
-                                </select>
-                            </div>
-                        </div>
-
-                        <div class="w-full h-[20%] flex flex-row items-center py-2 px-4 bg-[#363636] rounded-md"
-                            v-for="t in tasks.data">
-                            <div class="w-[15%] h-full flex justify-center items-center">
-                                <input type="checkbox" class="w-6 h-6">
-                            </div>
-                            <div class="w-full flex flex-col gap-2 items-center">
-                                <div class="w-full">
-                                    <p class="text-xl">{{ t.title }}</p>
+                    <div class="w-[100%] h-[100%] flex flex-col gap-[2rem]">
+                        <div class="flex flex-col gap-[2rem] overflow-auto">
+                            <div class="w-[30%]">
+                                <div
+                                    class="w-full flex flex-row px-4 py-2 gap-2 border border-[#363636] bg-[#363636] rounded-lg">
+                                    <select class="w-full bg-[#363636] flex flex-row items-center gap-2"
+                                        v-model.trim="daysOptions" @change.prevent="verifyDate()">
+                                        <option value="" selected>
+                                            Todas
+                                            <font-awesome-icon :icon="['fas', 'chevron-down']" />
+                                        </option>
+                                        <option :value="$filters.justDate(new Date())" selected>
+                                            Hoje
+                                        </option>
+                                        <option :value="subDate">
+                                            Ontem
+                                        </option>
+                                    </select>
                                 </div>
-                                <div class="w-full flex flex-row justify-between items-center">
-                                    <div class="text-gray-400">{{ $filters.date(t.date) }}</div>
-                                    <div class="flex flex-row gap-6">
-                                        <div :class="`flex flex-row items-center justify-center gap-2 rounded-md px-2 py-2`"
-                                            :style="{ backgroundColor: t.color_category, borderColor: t.color_category }">
-                                            <font-awesome-icon :icon="['fas', 'graduation-cap']" />
-                                            <p>{{ t.name_category }}</p>
+                            </div>
+
+                            <div class="w-full min-h-[20%] max-h-[60%] flex flex-row items-center py-2 px-4 bg-[#363636] rounded-md"
+                                v-for="t in tasks">
+                                <div class="w-[15%] h-full flex justify-center items-center">
+                                    <input type="checkbox" class="w-6 h-6" v-model="t.status" @click.prevent="changeStatus(t)">
+                                </div>
+                                <div class="w-full flex flex-col gap-2 items-center" @click.prevent="redirectTaskScreen()">
+                                    <div class="w-full">
+                                        <p class="text-xl">{{ t.title }}</p>
+                                    </div>
+                                    <div class="w-full flex flex-row justify-between items-center">
+                                        <div class="text-gray-400">{{ $filters.date(t.date) }}</div>
+                                        <div class="flex flex-row gap-6">
+                                            <div :class="`flex flex-row items-center justify-center gap-2 rounded-md px-2 py-2`"
+                                                :style="{ backgroundColor: t.color_category, borderColor: t.color_category }">
+                                                <font-awesome-icon :icon="['fas', t.icon_category]" />
+                                                <p>{{ t.name_category }}</p>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
+
+                        <div class="flex flex-col gap-[2rem] overflow-auto">
+                            <div class="w-[40%]">
+                                <div
+                                    class="w-full flex flex-row px-4 py-2 gap-2 border border-[#363636] bg-[#363636] rounded-lg">
+                                    <select class="w-full bg-[#363636] flex flex-row items-center gap-2">
+                                        <option value="" selected disabled>
+                                            Completada
+                                            <font-awesome-icon :icon="['fas', 'chevron-down']" />
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="w-full min-h-[20%] max-h-[60%] flex flex-row items-center py-2 px-4 bg-[#363636] rounded-md"
+                                v-for="t in tasksCompleted">
+                                <div class="w-[15%] h-full flex justify-center items-center">
+                                    <input type="checkbox" class="w-6 h-6" v-model="t.status" @click.prevent="changeStatus(t)">
+                                </div>
+                                <div class="w-full flex flex-col gap-2 items-center">
+                                    <div class="w-full">
+                                        <p class="text-xl">{{ t.title }}</p>
+                                    </div>
+                                    <div class="w-full flex flex-row justify-between items-center">
+                                        <div class="text-gray-400">{{ $filters.date(t.date) }}</div>
+                                        <div class="flex flex-row gap-6">
+                                            <div :class="`flex flex-row items-center justify-center gap-2 rounded-md px-2 py-2`"
+                                                :style="{ backgroundColor: t.color_category, borderColor: t.color_category }">
+                                                <font-awesome-icon :icon="['fas', t.icon_category]" />
+                                                <p>{{ t.name_category }}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
             </div>
@@ -86,13 +126,21 @@ export default {
             searchShow: false,
             daysOptions: '',
             taskSearch: '',
-            subDate: this.$filters.justDate(new Date().setDate(new Date().getDate() - 1))
+            subDate: this.$filters.justDate(new Date().setDate(new Date().getDate() - 1)),
         }
     },
 
     methods: {
         changeShow() {
             this.searchShow = !this.searchShow;
+        },
+
+        changeStatus(task) {
+            task.status == true ? task.status = false : task.status = true;
+        },
+
+        redirectTaskScreen() {
+            this.$router.push({ name: 'Task' });
         },
 
         verifyDate() {
@@ -104,14 +152,20 @@ export default {
         },
 
         searchTask() {
-            this.$store.dispatch('searchTask', {taskSearch: this.taskSearch});
+            this.$store.dispatch('searchTask', { taskSearch: this.taskSearch });
         }
 
     },
 
     computed: {
         tasks() {
-            return this.$store.state.tasks;
+            const taskNotComplete = this.$store.state.tasks.data.filter(task => task.status == false)
+            return taskNotComplete;
+        },
+
+        tasksCompleted() {
+            const taskComplete = this.$store.state.tasks.data.filter(task => task.status == true)
+            return taskComplete;
         },
 
         isLoading() {
