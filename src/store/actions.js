@@ -47,6 +47,7 @@ export function getTasks({commit, state}, task) {
 }
 
 export function registerTask({commit, state}, task) {
+    // debugger;
     state.tasks.loading = true;
     return axiosClient.post('/task', task)
         .then(({data}) => {
