@@ -47,7 +47,6 @@
 
 <script>
 import ModalTask from '../Modal/ModalTask.vue';
-import Modal from '../Modal/Modal.vue'; //teste
 
 export default {
     components: {
