@@ -6,6 +6,7 @@ const Welcome = () => import("../views/Intro/Welcome.vue");
 const Login = () => import("../views/Login/Login.vue");
 const CreateAccount = () => import('../views/Login/CreateAccount.vue')
 const Home = () => import("../views/Home/Home.vue");
+const Task = () => import("../views/Task/Task.vue");
 
 const routes = [
     {
@@ -43,6 +44,11 @@ const routes = [
         name: 'Category',
         path: '/category',
         component: Category
+    },
+    {
+        name: 'Task',
+        path: '/task/:id',
+        component: Task
     }
 ];
 
