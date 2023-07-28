@@ -11,17 +11,13 @@
 
                 <div class="w-full flex flex-col min-h-[80%]">
                     <div class="flex-1 flex flex-col gap-4">
-                        <slot></slot>
+                        <slot name="content"></slot>
                     
                     </div>
 
                     <div class="flex items-center justify-between">
-                        <button>
-                            Cancelar
-                        </button>
-                        <button class="px-4 py-2 bg-[#8687E7] rounded-md">
-                            Editar
-                        </button>
+                        <slot name="button"></slot>
+                        
                     </div>
                     
                 </div>
