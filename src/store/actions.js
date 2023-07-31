@@ -95,3 +95,7 @@ export function searchTask({commit, state}, task) {
             notify("warning", "Atenção", response.data.message);
         })
 }
+
+export function editTask({commit, state}, task) {
+    // return axiosClient.post()
+}
