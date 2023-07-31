@@ -11,15 +11,11 @@
           v-model="currentDate"
           is24h
         />
-        <div
-          class="bg-[#0f172a] p-6 flex flex-row items-center justify-between w-full"
-        >
-          <button class="text-[#8687E7]">
+        <div class="bg-[#0f172a] p-6 flex flex-row items-center justify-between w-full">
+          <button class="text-[#8687E7]" @click.prevent="showModal = false">
             Voltar
           </button>
-          <button
-            class="border rounded-md py-2 px-4 bg-blue-700"
-          >
+          <button class="border rounded-md py-2 px-4 bg-blue-700" @click.prevent="saveNewDate()">
             Salvar
           </button>
         </div>
@@ -33,7 +29,7 @@
 <script setup>
 import ModalLayout from "../../components/Layouts/Modal/ModalLayout.vue";
 import { defineProps, defineEmits, computed, ref } from "vue";
-import { useStore } from "vuex";
+import dateTime from "../../filters/dateTime.js"
 
 const props = defineProps({
   showModal: Boolean,
@@ -45,11 +41,16 @@ const props = defineProps({
 
 const emit = defineEmits(["update:showModal"]);
 
-const currentDate = ref(props.taskModel[0]);
-
+const currentDate = ref('');
 
 const show = computed({
   get: () => props.showModal,
   set: (value) => emit("update:showModal", value),
 });
+
+function saveNewDate() {
+    currentDate.value = dateTime(currentDate.value);
+    props.taskModel[0].date = currentDate.value;
+    emit('update:showModal', false);
+}
 </script>

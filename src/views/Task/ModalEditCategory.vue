@@ -1,7 +1,7 @@
 <template>
     <ModalLayout v-if="show" :title="'Editar categoria'">
         <template #content>
-            <div class="w-full h-[15vh] flex flex-row flex-wrap items-start gap-[.8rem] overflow-scroll">
+            <div class="w-full h-full flex flex-row flex-wrap items-start gap-[.8rem] overflow-scroll">
                 <div 
                     class="flex flex-col items-center gap-2" 
                     v-for="(category, index) in categories" 

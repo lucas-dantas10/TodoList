@@ -13,7 +13,7 @@
         <div class="w-full">
             <input
                 type="text"
-                class="px-4 py-2 rounded-md bg-[#363636] w-full"
+                class="px-4 py-2 rounded-md bg-[#363636] text-gray-500 w-full"
                 placeholder="Descrição"
                 v-model.trim="task[0].description"
             />
