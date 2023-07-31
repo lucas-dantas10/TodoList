@@ -3,7 +3,7 @@
 
         <Transition name="bounce">
 
-            <div class="modal bg-[#363636] rounded-md w-full h-[35%] p-4">
+            <div class="modal bg-[#363636] rounded-md w-full p-4" :style="{ height: height }">
 
                 <div class="border-b pb-4 mb-4">
                     <h1 class="text-center">{{ title }}</h1>
@@ -36,7 +36,8 @@
 import { defineProps } from 'vue';
 
 const props = defineProps({
-    title: String
+    title: String,
+    height: String
 });
 
 </script>
@@ -48,6 +49,7 @@ const props = defineProps({
   top: 20%;
   left: 50%;
   width: 300px;
+  height: 55%;
   margin-left: -150px;
 }
 
