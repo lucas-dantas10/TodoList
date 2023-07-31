@@ -1,7 +1,7 @@
 <template>
-  <ModalEditTask :show-modal="appearModalTask" :task="task" />
+  <ModalEditTask :show-modal="appearModalTask" :task="task" :height="'300px'" />
   <ModalEditCategory :show-modal="appearModalCategory" :category="task" :task-model="task" />
-  <ModalEditDate :show-modal="appearModalDate" :task-model="task" />
+  <ModalEditDate :show-modal="appearModalDate" :task-model="task" :height="'55%'" />
   <section class="w-full h-full">
     <form
       class="w-full h-full p-6"
@@ -29,11 +29,11 @@
 
       <div class="flex justify-between mb-8">
         <div>
-          <input type="checkbox" class="w-6 h-6" />
+          <input type="checkbox" v-model="statusTask" class="w-6 h-6" />
         </div>
         <div>
           <p>{{ t.title }}</p>
-          <p>{{ t.description }}</p>
+          <p class="text-gray-500">{{ t.description }}</p>
         </div>
         <div>
           <font-awesome-icon
@@ -108,6 +108,7 @@ import ModalEditDate from "./ModalEditDate.vue";
 const appearModalTask = ref(false);
 const appearModalCategory = ref(false);
 const appearModalDate = ref(false);
+const statusTask = ref(false);
 
 const store = useStore();
 const route = useRoute();
@@ -126,7 +127,9 @@ onMounted(() => {
 });
 
 function editTask() {
-  console.log(task);
+    task.value[0].status = statusTask.value;
+    console.log(task.value[0].status);
+    // store.dispatch('editTask', task);
 }
 
 function deleteTask() {
