@@ -23,7 +23,10 @@ import { computed } from 'vue';
 import ModalLayout from '../../components/Layouts/Modal/ModalLayout.vue';
 import store from '../../store';
 import Spinner from '../../components/Spinner/Spinner.vue';
+import { useRoute, useRouter } from 'vue-router';
 
+
+const router = useRouter();
 const props = defineProps({
     showModal: Boolean,
     taskModel: {
@@ -40,7 +43,10 @@ const show = computed({
 });
 
 function deleteTask() {
-    // store.dispatch('deleteTask', taskModel);
+    store.dispatch('deleteTask', props.taskModel[0])
+        .then(() => {
+            router.push({name: 'Home'});
+        });
 }
 
 const isLoading = computed(() => store.state.tasks.loading);
