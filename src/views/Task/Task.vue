@@ -134,8 +134,7 @@ onMounted(() => {
 
 function editTask() {
     task.value[0].status = statusTask.value;
-    console.log(task.value[0].status);
-    // store.dispatch('editTask', task);
+    store.dispatch('editTask', task.value[0]);
 }
 
 function showModal(typeModal) {
