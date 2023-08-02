@@ -2,6 +2,8 @@
   <ModalEditTask :show-modal="appearModalTask" :task="task" :height="'300px'" />
   <ModalEditCategory :show-modal="appearModalCategory" :category="task" :task-model="task" />
   <ModalEditDate :show-modal="appearModalDate" :task-model="task" :height="'55%'" />
+  <ModalDeleteTask :show-modal="appearModalDelete" :task-model="task" :height="'250px'" />
+
   <section class="w-full h-full">
     <form
       class="w-full h-full p-6"
@@ -77,7 +79,7 @@
 
           <div>
             <div class="text-red-600 font-semibold">
-                <div class="flex items-center gap-2 w-[40%]" @click.prevent="deleteTask()">
+                <div class="flex items-center gap-2 w-[40%]" @click.prevent="showModal('delete')">
                     <font-awesome-icon :icon="['fas', 'trash']" class="text-2xl" />
                     <p>Deletar Tarefa</p>
                 </div>              
@@ -85,10 +87,9 @@
           </div>
         </div>
 
-        <div
-          class="w-full flex items-center justify-center bg-[#8687E7] px-4 py-2 rounded-sm"
-        >
-          <div>
+        <div class="w-full flex items-center justify-center bg-[#8687E7] px-4 py-2 rounded-sm">
+          <div class="flex gap-4">
+            <Spinner :full-page="false" :loading="isLoading"></Spinner>
             <button class="text-center">Editar Tarefa</button>
           </div>
         </div>
@@ -104,15 +105,20 @@ import { useRoute } from "vue-router";
 import ModalEditTask from "./ModalEditTask.vue";
 import ModalEditCategory from "./ModalEditCategory.vue";
 import ModalEditDate from "./ModalEditDate.vue";
+import ModalDeleteTask from "./ModalDeleteTask.vue";
+import Spinner from "../../components/Spinner/Spinner.vue";
 
 const appearModalTask = ref(false);
 const appearModalCategory = ref(false);
 const appearModalDate = ref(false);
+const appearModalDelete= ref(false);
 const statusTask = ref(false);
 
 const store = useStore();
 const route = useRoute();
 const idParam = route.params.id;
+
+const isLoading = computed(() => store.state.tasks.loading);
 
 const task = computed(() => {
   let taskSelected = store.state.tasks.data.filter(
@@ -132,10 +138,6 @@ function editTask() {
     // store.dispatch('editTask', task);
 }
 
-function deleteTask() {
-  console.log("deletada");
-}
-
 function showModal(typeModal) {
   if (typeModal == "task") 
     appearModalTask.value == true 
@@ -152,6 +154,11 @@ function showModal(typeModal) {
     appearModalDate.value == true
         ? (appearModalDate.value = false) 
         : (appearModalDate.value = true);
+  }
+  if (typeModal == "delete") {
+    appearModalDelete.value == true
+        ? (appearModalDelete.value = false) 
+        : (appearModalDelete.value = true);
   }
     
 }
