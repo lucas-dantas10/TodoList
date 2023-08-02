@@ -15,7 +15,7 @@
                     
                     </div>
 
-                    <div class="flex items-center justify-between">
+                    <div class="flex items-center justify-between p-4">
                         <slot name="button"></slot>
                         
                     </div>
