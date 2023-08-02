@@ -15,7 +15,7 @@
           <button class="text-[#8687E7]" @click.prevent="showModal = false">
             Voltar
           </button>
-          <button class="border rounded-md py-2 px-4 bg-blue-700" @click.prevent="saveNewDate()">
+          <button class="border rounded-md py-2 px-4 bg-blue-700" @click.prevent="saveNewDate()" @click="showModal = false">
             Salvar
           </button>
         </div>
@@ -51,6 +51,5 @@ const show = computed({
 function saveNewDate() {
     currentDate.value = dateTime(currentDate.value);
     props.taskModel[0].date = currentDate.value;
-    emit('update:showModal', false);
 }
 </script>
