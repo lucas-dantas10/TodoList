@@ -87,12 +87,12 @@
           </div>
         </div>
 
-        <div class="w-full flex items-center justify-center bg-[#8687E7] px-4 py-2 rounded-sm">
+        <button class="w-full flex items-center justify-center bg-[#8687E7] px-4 py-2 rounded-sm">
           <div class="flex gap-4">
             <Spinner :full-page="false" :loading="isLoading"></Spinner>
-            <button class="text-center">Editar Tarefa</button>
+            <p class="text-center">Editar Tarefa</p>
           </div>
-        </div>
+        </button>
       </div>
     </form>
   </section>
@@ -133,8 +133,9 @@ onMounted(() => {
 });
 
 function editTask() {
-    task.value[0].status = statusTask.value;
-    store.dispatch('editTask', task.value[0]);
+    console.log(task.value[0])
+    // task.value[0].status = statusTask.value;
+    // store.dispatch('editTask', task.value[0]);
 }
 
 function showModal(typeModal) {
