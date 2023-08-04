@@ -101,7 +101,7 @@
 <script setup>
 import { computed, onMounted, ref } from "vue";
 import { useStore } from "vuex";
-import { useRoute } from "vue-router";
+import { useRoute, useRouter } from "vue-router";
 import ModalEditTask from "./ModalEditTask.vue";
 import ModalEditCategory from "./ModalEditCategory.vue";
 import ModalEditDate from "./ModalEditDate.vue";
@@ -116,6 +116,7 @@ const statusTask = ref(false);
 
 const store = useStore();
 const route = useRoute();
+const router = useRouter();
 const idParam = route.params.id;
 
 const isLoading = computed(() => store.state.tasks.loading);
@@ -133,9 +134,11 @@ onMounted(() => {
 });
 
 function editTask() {
-    console.log(task.value[0])
-    // task.value[0].status = statusTask.value;
-    // store.dispatch('editTask', task.value[0]);
+    task.value[0].status = statusTask.value;
+    store.dispatch('editTask', task.value[0])
+        .then(() => [
+            router.push({name: 'Home'})
+        ]);
 }
 
 function showModal(typeModal) {
