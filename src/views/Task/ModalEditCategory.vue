@@ -75,6 +75,7 @@ const categories = computed(() => {
 });
 
 function editCategory(category) {
+    props.taskModel[0].id_category = category.id;
     props.taskModel[0].name_category = category.name;
     props.taskModel[0].color_category = category.color;
     props.taskModel[0].icon_category = category.icon;
