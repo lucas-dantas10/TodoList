@@ -97,16 +97,16 @@ export function searchTask({commit, state}, task) {
 }
 
 export function editTask({commit, state}, task) {
-    console.log(task);
-    // state.tasks.loading = true;
-    // return axiosClient.put(`/task/${task.id}`)
-    //     .then(({data}) => {
-    //         console.log(data);
-    //     })
-    //     .catch(({response}) => {
-    //         console.log(response);
-    //     })
-    //     .finally(() => state.tasks.loading = false);
+    state.tasks.loading = true;
+    return axiosClient.put(`/task/${task.id}`, task)
+        .then(({data}) => {
+            commit('setTask', task);
+            notify('success', 'Sucesso', data.message);
+        })
+        .catch(({response}) => {
+            console.log(response);
+        })
+        .finally(() => state.tasks.loading = false);
 }
 
 export function deleteTask({commit, state}, task) {
