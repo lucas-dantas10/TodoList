@@ -2,7 +2,7 @@
   <Notification />
   <Spinner :loading="isLoading" :full-page="true" />
   <div class="w-full h-full">
-    <AppLayout @search-show="changeShow()">
+    <AppLayout @search-show="changeShow()" title="Home" :menu="true">
       <div class="w-full h-full flex items-center justify-center" v-if="!$store.state.tasks.length">
         <div class="flex flex-col items-center justify-cente">
           <div>
