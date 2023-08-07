@@ -100,7 +100,7 @@ export function editTask({commit, state}, task) {
     state.tasks.loading = true;
     return axiosClient.put(`/task/${task.id}`, task)
         .then(({data}) => {
-            commit('setTask', task);
+            // commit('setTask', task);
             notify('success', 'Sucesso', data.message);
         })
         .catch(({response}) => {
