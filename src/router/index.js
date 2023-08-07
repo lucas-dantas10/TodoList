@@ -7,6 +7,7 @@ const Login = () => import("../views/Login/Login.vue");
 const CreateAccount = () => import('../views/Login/CreateAccount.vue')
 const Home = () => import("../views/Home/Home.vue");
 const Task = () => import("../views/Task/Task.vue");
+const Focus = () => import("../views/Focus/Focus.vue");
 
 const routes = [
     {
@@ -49,6 +50,11 @@ const routes = [
         name: 'Task',
         path: '/task/:id',
         component: Task
+    },
+    {
+        name: 'Focus',
+        path: '/focus',
+        component: Focus
     }
 ];
 
