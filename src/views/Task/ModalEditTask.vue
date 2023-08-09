@@ -34,7 +34,7 @@
 
 <script setup>
 import ModalLayout from "../../components/Layouts/Modal/ModalLayout.vue";
-import { defineEmits, defineProps, computed, ref } from 'vue';
+import { computed, ref } from 'vue';
 
 const props = defineProps({
     showModal: Boolean,

@@ -28,7 +28,7 @@
 
 <script setup>
 import ModalLayout from "../../components/Layouts/Modal/ModalLayout.vue";
-import { defineProps, defineEmits, computed, ref } from "vue";
+import { computed, ref } from "vue";
 import dateTime from "../../filters/dateTime.js"
 
 const props = defineProps({
