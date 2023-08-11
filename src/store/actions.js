@@ -17,6 +17,14 @@ export function login({commit}, data) {
         })
 }
 
+export function logout({commit, state}) {
+    return axiosClient.post('/logout')
+        .then(() => {
+            commit('setToken', null);
+        })
+        .catch(({response}) => response.data);
+}
+
 export function registerUser({commit}, user) {
     return axiosClient.post('/create-account', user)
         .then(({data}) => {
@@ -118,4 +126,14 @@ export function deleteTask({commit, state}, task) {
         })
         .catch(({response}) => response)
         .finally(() => state.tasks.loading = false);
+}
+
+export function changeStatusTask({commit, state}, task) {
+    return axiosClient.post('/tasks/change-status', {id: task.id, status: task.status})
+        .then(({data}) => {
+            // console.log(data)
+        })
+        .catch(({response}) => {
+            // console.log(response.data);
+        });
 }
