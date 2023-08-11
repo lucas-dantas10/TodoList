@@ -3,7 +3,10 @@
   <Spinner :loading="isLoading" :full-page="true" />
   <div class="w-full h-full">
     <AppLayout @search-show="changeShow()" title="Home" :focus="true">
-      <div class="w-full h-full flex items-center justify-center" v-if="!$store.state.tasks.length">
+      <div
+        class="w-full h-full flex items-center justify-center"
+        v-if="!$store.state.tasks.length"
+      >
         <div class="flex flex-col items-center justify-cente">
           <div>
             <img src="../../assets/checklist.svg" alt="" />
@@ -17,7 +20,11 @@
 
       <div class="w-full h-[90%] flex justify-center" v-else>
         <div class="flex flex-col gap-4 w-[85%] overflow-auto">
-          <form class="w-full flex flex-row items-center gap-8 relative animate-fade-in-down" v-if="searchShow" @submit.prevent="searchTask()">
+          <form
+            class="w-full flex flex-row items-center gap-8 relative animate-fade-in-down"
+            v-if="searchShow"
+            @submit.prevent="searchTask()"
+          >
             <font-awesome-icon
               class="absolute text-2xl px-3"
               :icon="['fas', 'magnifying-glass']"
@@ -56,7 +63,8 @@
               <TransitionGroup name="list">
                 <div
                   class="w-full min-h-[20%] max-h-[60%] flex flex-row items-center py-2 px-4 bg-[#363636] rounded-md"
-                  v-for="(t, index) in tasks" :key="index"
+                  v-for="(t, index) in tasks"
+                  :key="index"
                 >
                   <div class="w-[15%] h-full flex justify-center items-center">
                     <input
@@ -66,7 +74,10 @@
                       @click.prevent="changeStatus(t)"
                     />
                   </div>
-                  <div class="w-full flex flex-col gap-2 items-center" @click.prevent="redirectTaskScreen(t.id)">
+                  <div
+                    class="w-full flex flex-col gap-2 items-center"
+                    @click.prevent="redirectTaskScreen(t.id)"
+                  >
                     <div class="w-full">
                       <p class="text-xl">{{ t.title }}</p>
                     </div>
@@ -113,7 +124,8 @@
               <TransitionGroup name="list">
                 <div
                   class="w-full min-h-[20%] max-h-[60%] flex flex-row items-center py-2 px-4 bg-[#363636] rounded-md"
-                  v-for="(t, index) in tasksCompleted" :key="index"
+                  v-for="(t, index) in tasksCompleted"
+                  :key="index"
                 >
                   <div class="w-[15%] h-full flex justify-center items-center">
                     <input
@@ -123,7 +135,10 @@
                       @click.prevent="changeStatus(t)"
                     />
                   </div>
-                  <div class="w-full flex flex-col gap-2 items-center" @click.prevent="redirectTaskScreen(t.id)">
+                  <div
+                    class="w-full flex flex-col gap-2 items-center"
+                    @click.prevent="redirectTaskScreen(t.id)"
+                  >
                     <div class="w-full">
                       <p class="text-xl">{{ t.title }}</p>
                     </div>
@@ -179,11 +194,12 @@ export default {
 
   methods: {
     changeShow() {
-      this.searchShow = !this.searchShow;
+        this.searchShow = !this.searchShow;
     },
 
     changeStatus(task) {
-      task.status == true ? (task.status = false) : (task.status = true);
+        task.status == true ? (task.status = false) : (task.status = true);
+        this.$store.dispatch('changeStatusTask', task);
     },
 
     redirectTaskScreen(id) {
@@ -205,12 +221,16 @@ export default {
 
   computed: {
     tasks() {
-      const taskNotComplete = this.$store.state.tasks.data.filter(task => task.status == false);
+      const taskNotComplete = this.$store.state.tasks.data.filter(
+        (task) => task.status == false
+      );
       return taskNotComplete;
     },
 
     tasksCompleted() {
-      const taskComplete = this.$store.state.tasks.data.filter(task => task.status == true);
+      const taskComplete = this.$store.state.tasks.data.filter(
+        (task) => task.status == true
+      );
       return taskComplete;
     },
 
