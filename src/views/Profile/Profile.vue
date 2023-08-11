@@ -7,11 +7,11 @@
 
                     <div class="flex items-center justify-center gap-6">
                         <div class="rounded-md py-4 px-4 bg-[#363636]">
-                            <p>10 tarefas restantes</p>
+                            <p>{{ tasksLeft }} tarefas restantes</p>
                         </div>
 
                         <div class="rounded-md py-4 px-4 bg-[#363636]">
-                            <p>2 tarefas feitas</p>
+                            <p>{{ tasksDone }} tarefas feitas</p>
                         </div>
                     </div>
                 </div>
@@ -43,16 +43,34 @@
 import AppLayout from '../../components/Layouts/AppLayout.vue';
 import ListSettings from './ListSettings.vue';
 import { useStore } from 'vuex';
+import { useRouter } from 'vue-router';
 import { computed } from 'vue';
 
 const store = useStore();
+const router = useRouter();
 
 function logout() {
-    console.log('saindo da conta')
+    store.dispatch('logout')
+        .then(() => {
+            router.push({ name: 'Login' });
+        })
+        .catch(({response}) => console.log(response.data));
 }
 
 const user = computed(() => {
     return store.state.user.data;
+});
+
+const tasksDone = computed(() => {
+    let tasksDone = store.state.tasks.data.filter(task => task.status == true);
+    
+    return tasksDone.length;
+})
+
+const tasksLeft = computed(() => {
+    let tasksLeft = store.state.tasks.data.filter(task => task.status == false);
+
+    return tasksLeft.length;
 });
 
 const submenusSettings = [
