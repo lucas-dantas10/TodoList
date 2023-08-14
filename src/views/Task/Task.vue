@@ -122,9 +122,8 @@ const idParam = route.params.id;
 const isLoading = computed(() => store.state.tasks.loading);
 
 const task = computed(() => {
-  let taskSelected = store.state.tasks.data.filter(
-    (task) => task.id == idParam
-  );
+  let taskSelected = store.state.tasks.data.filter((task) => task.id == idParam);
+  statusTask.value = taskSelected[0].status;
   return taskSelected;
 });
 
