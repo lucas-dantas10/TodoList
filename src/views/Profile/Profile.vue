@@ -1,4 +1,5 @@
 <template>
+    <ModalEditName :show-modal="showModalEditName" />
     <AppLayout title="Perfil">
         <section class="w-full h-full">
             <div class="w-full flex flex-col gap-8 p-6">
@@ -25,6 +26,7 @@
                     <ListSettings 
                         title="Conta"
                         :submenus-items="submenusAccount"
+                        @show-modal="showAddNewModal"
                     />
                 </div>
 
@@ -42,12 +44,19 @@
 <script setup>
 import AppLayout from '../../components/Layouts/AppLayout.vue';
 import ListSettings from './ListSettings.vue';
+import ModalEditName from './ModalEditName.vue';
 import { useStore } from 'vuex';
 import { useRouter } from 'vue-router';
-import { computed } from 'vue';
+import { computed, ref } from 'vue';
 
 const store = useStore();
 const router = useRouter();
+const showModalEditName = ref(false);
+
+function showAddNewModal(value) {
+    console.log(value);
+    showModalEditName.value = value;
+}
 
 function logout() {
     store.dispatch('logout')
@@ -76,7 +85,8 @@ const tasksLeft = computed(() => {
 const submenusSettings = [
     {
         subtitle: "Configurações do App",
-        icon: "gear"
+        icon: "gear",
+        href: "/profile/settings"
     }
 ];
 
