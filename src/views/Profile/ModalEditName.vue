@@ -3,8 +3,9 @@
     <ModalLayout v-if="show" title="Editar Nome da Conta" height="25%" >
 
         <template #content>
-            <div>
-                <input v-model="account.name" type="text" class="w-full px-2 py-2 bg-[#363636] border border-white rounded-md">
+            <div class="flex flex-col justify-center gap-2">
+                <label for="name" class="text-gray-400">Entrar com novo nome</label>
+                <input v-model="account.name" id="name" type="text" class="w-full px-2 py-2 bg-[#363636] border border-white rounded-md">
             </div>
         </template>
 
