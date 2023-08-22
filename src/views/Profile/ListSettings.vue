@@ -7,7 +7,7 @@
             v-for="(submenu, index) in submenusItems" 
             :key="index" 
             class="flex items-center justify-between" 
-            @click.prevent="emit('showModal', true)"
+            @click.prevent="emit('showModal', {status: true, icon: submenu.icon})"
         >
             <div class="flex items-center gap-2">
                 <font-awesome-icon class="text-xl" :icon="['fas', submenu.icon]" />
