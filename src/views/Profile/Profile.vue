@@ -1,5 +1,6 @@
 <template>
     <ModalEditName :show-modal="showModalEditName" />
+    <ModalEditPassword :show-modal="showModalEditPassword" />
     <AppLayout title="Perfil">
         <section class="w-full h-full">
             <div class="w-full flex flex-col gap-8 p-6">
@@ -8,11 +9,15 @@
 
                     <div class="flex items-center justify-center gap-6">
                         <div class="rounded-md py-4 px-4 bg-[#363636]">
-                            <p>{{ tasksLeft }} tarefas restantes</p>
+                            <p>
+                                {{ tasksLeft == 1 ? `${tasksLeft} tarefa restante` : `${tasksLeft} tarefas restantes` }}
+                            </p>
                         </div>
 
                         <div class="rounded-md py-4 px-4 bg-[#363636]">
-                            <p>{{ tasksDone }} tarefas feitas</p>
+                            <p>
+                                {{ tasksDone == 1 ? `${tasksDone} tarefa feita` : `${tasksDone} tarefas feitas` }} 
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -45,6 +50,7 @@
 import AppLayout from '../../components/Layouts/AppLayout.vue';
 import ListSettings from './ListSettings.vue';
 import ModalEditName from './ModalEditName.vue';
+import ModalEditPassword from './ModalEditPassword.vue';
 import { useStore } from 'vuex';
 import { useRouter } from 'vue-router';
 import { computed, ref } from 'vue';
@@ -52,10 +58,17 @@ import { computed, ref } from 'vue';
 const store = useStore();
 const router = useRouter();
 const showModalEditName = ref(false);
+const showModalEditPassword = ref(false);
 
-function showAddNewModal(value) {
-    console.log(value);
-    showModalEditName.value = value;
+function showAddNewModal(menu) {
+
+    if (menu.icon == 'gear') {
+        showModalEditName.value = menu.status;
+        return;
+    }
+
+    showModalEditPassword.value = menu.status;
+    // showModalEditName.value = value;
 }
 
 function logout() {
