@@ -1,4 +1,5 @@
 <template>
+    <Notification />
     <ModalEditName :show-modal="showModalEditName" />
     <ModalEditPassword :show-modal="showModalEditPassword" />
     <AppLayout title="Perfil">
@@ -23,10 +24,10 @@
                 </div>
 
                 <div class="flex flex-col gap-6">
-                    <ListSettings 
+                    <!-- <ListSettings 
                         title="Configurações"
                         :submenus-items="submenusSettings"
-                    />
+                    /> -->
 
                     <ListSettings 
                         title="Conta"
@@ -51,6 +52,7 @@ import AppLayout from '../../components/Layouts/AppLayout.vue';
 import ListSettings from './ListSettings.vue';
 import ModalEditName from './ModalEditName.vue';
 import ModalEditPassword from './ModalEditPassword.vue';
+import Notification from '../../components/Notification/Notification.vue';
 import { useStore } from 'vuex';
 import { useRouter } from 'vue-router';
 import { computed, ref } from 'vue';
