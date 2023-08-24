@@ -134,7 +134,6 @@ onMounted(() => {
 
 function editTask() {
     task.value[0].status = statusTask.value;
-    console.log(task.value[0])
     store.dispatch('editTask', task.value[0])
         .then(() => [
             router.push({name: 'Home'})
