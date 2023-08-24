@@ -13,7 +13,8 @@
             <button @click.prevent="showModal = false">
                 Cancelar
             </button>
-            <button class="px-4 py-2 bg-[#8687E7] rounded-md" @click.prevent="editName()">
+            <button class="flex items-center gap-2 px-4 py-2 bg-[#8687E7] rounded-md" @click.prevent="editName()">
+                <Spinner :loading="isLoading" :full-page="false"/>
                 Editar
             </button>
         </template>
@@ -25,13 +26,17 @@
 
 <script setup>
 import ModalLayout from '../../components/Layouts/Modal/ModalLayout.vue';
+import Spinner from '../../components/Spinner/Spinner.vue';
 import { computed, ref } from 'vue';
 import { useStore } from 'vuex';
 
 const store = useStore();
-
 const account = ref({
     name: '' 
+});
+
+const isLoading = computed(() => {
+    return store.state.user.loading;
 });
 
 const props = defineProps({
@@ -48,6 +53,8 @@ const show = computed({
 }); 
 
 function editName() {
-    store.dispatch('editNameAccount', account);
+    store.dispatch('editUser', {
+        name: account.value.name
+    });
 }
 </script>
