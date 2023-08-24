@@ -44,7 +44,7 @@
 
 <script setup>
 import ModalLayout from '../../components/Layouts/Modal/ModalLayout.vue';
-import { computed, defineProps, defineEmits } from 'vue';
+import { computed } from 'vue';
 import { useStore } from 'vuex';
 
 const store = useStore();
