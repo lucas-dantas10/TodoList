@@ -2,7 +2,8 @@ export default {
     user: {
         token: sessionStorage.getItem('TOKEN'),
         data: {},
-        visited: localStorage.getItem('VISITED')
+        visited: localStorage.getItem('VISITED'),
+        loading: false
     },
     
     tasks: {
