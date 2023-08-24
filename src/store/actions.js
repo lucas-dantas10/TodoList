@@ -137,3 +137,16 @@ export function changeStatusTask({commit, state}, task) {
             // console.log(response.data);
         });
 }
+
+export function editUser({commit, state}, user) {
+    state.user.loading = true;
+    return axiosClient.put(`/user/${state.user.data.id}`, user)
+        .then(({data}) => {
+            notify('success', "Sucesso", data.message);
+            state.user.data = data.user;
+        })
+        .catch(({response}) => {
+            notify('warning', "Atenção", response.data.message);
+        })
+        .finally(() => state.user.loading = false);
+}
