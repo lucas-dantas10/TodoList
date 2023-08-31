@@ -19,9 +19,7 @@
             </div>
         </div>
 
-        <TransitionGroup name="list">
-            <Tasks select-is="notCompleted" />
-        </TransitionGroup>
+        <Tasks :select-is="selectIs" />
     </div>
 
     <div class="flex flex-col gap-6" v-else>
@@ -90,14 +88,3 @@ const tasksCompleted = computed(() => {
 const isLoading = computed(() => store.state.tasks.loading);
 </script>
 
-<style scoped>
-.list-enter-active,
-.list-leave-active {
-    transition: all 0.5s ease;
-}
-.list-enter-from,
-.list-leave-to {
-    opacity: 0;
-    transform: translateX(30px);
-}
-</style>
