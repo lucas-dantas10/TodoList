@@ -1,7 +1,7 @@
 <template>
     <Notification></Notification>
     <LoginLayout :title="'Login'">
-        <template v-slot:form>
+        <template #form>
             <form class="flex flex-col gap-6" autocomplete="on">
                 <Transition>
                     <div v-if="errorMsg" class="border border-red-600 bg-red-600 w-full rounded-md px-4 py-2">
@@ -23,7 +23,7 @@
             </form>
         </template>
 
-        <template v-slot:buttonForm>
+        <template #buttonForm>
             <div>
                 <button type="button" @click.prevent="login()"
                     class="btn-main flex flex-row items-center justify-center gap-2">
