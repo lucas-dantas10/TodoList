@@ -7,7 +7,7 @@
         </div>
 
         <div class="w-full flex items-center justify-center">
-            <div class="flex flex-col items-center justify-center w-[80%] h-[60vh]">
+            <div class="flex flex-col items-center justify-center w-[80%] h-[60vh] lg:w-[30%]">
                 <div class="flex flex-1 flex-col items-center gap-8">
                     <h1 class="text-center text-3xl">Bem Vindo ao ToDo List</h1>
                     <h4 class="text-center text-md">Por favor logar com a sua conta ou criar uma nova conta para continuar
