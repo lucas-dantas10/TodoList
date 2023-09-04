@@ -14,11 +14,15 @@
                 />
             </section>
 
-            <section class="mt-8">
+            <section class="flex flex-col gap-4 justify-center mt-8">
                 <Tasks 
                     v-if="tasksSelect()"
-                    select-is="notCompleted"
+                    select-is="tasksNotCompleted"
                 />
+
+                <div v-else>   
+                    <h1 class="text-xl text-zinc-400">Nenhuma tarefa neste dia</h1>
+                </div>
             </section>
         </div>
     </AppLayout>
@@ -29,7 +33,7 @@ import { useStore } from "vuex";
 import AppLayout from "../../components/Layouts/AppLayout.vue";
 import justDate from "../../filters/justDate.js";
 import Tasks from '../Home/Tasks.vue';
-import { ref, computed } from "vue";
+import { ref, computed, onMounted } from "vue";
 
 const date = ref(new Date());
 const store = useStore();
@@ -37,11 +41,11 @@ const store = useStore();
 const allTasks = computed(() => store.state.tasks.data);
 
 function formatDate() {
-    const dateFormated = justDate(date.value);
+    date.value = justDate(date.value);
 }
 
 function tasksSelect() {
-    const dateFormated = justDate(date.value);
+    const dateFormated = date.value;
 
     const tasksForDate = allTasks.value.filter(task => {
         let dateFormatedTask = justDate(task.date);
