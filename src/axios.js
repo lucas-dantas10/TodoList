@@ -3,7 +3,7 @@ import store from './store';
 import router from './router/index.js';
 
 const axiosClient = axios.create({
-    baseURL: 'https://todolistapi-production-3070.up.railway.app/api', // PRODUCTION
+    baseURL: 'https://tolistapi.000webhostapp.com/api', // PRODUCTION
     //baseURL: 'http://localhost:8080/api', // ENVIRMONT
 });
 
