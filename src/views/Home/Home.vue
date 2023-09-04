@@ -35,11 +35,11 @@
                     <div class="w-[100%] h-[100%] flex flex-col gap-[2rem]">
                         <div class="flex flex-col gap-[2rem]">
                             <ListTasks 
-                                select-is="notCompleted"
+                                select-is="tasksNotCompleted"
                             />
 
                             <ListTasks 
-                                select-is="completed"
+                                select-is="tasksCompleted"
                             />
                         </div>
                     </div>

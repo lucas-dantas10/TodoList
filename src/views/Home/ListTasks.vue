@@ -1,5 +1,5 @@
 <template>
-    <div class="flex flex-col gap-6" v-if="selectIs == 'notCompleted'">
+    <div class="flex flex-col gap-6" v-if="selectIs == 'tasksNotCompleted'">
         <div class="w-[35%]">
             <div class="w-full flex flex-row px-4 py-2 gap-2 border border-[#363636] bg-[#363636] rounded-lg">
                 <select
@@ -34,9 +34,7 @@
             </div>
         </div>
 
-        <TransitionGroup name="list">
-            <Tasks select-is="completed" />
-        </TransitionGroup>
+        <Tasks :select-is="selectIs" />
     </div>
 </template>
 

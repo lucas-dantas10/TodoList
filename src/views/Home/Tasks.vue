@@ -2,8 +2,8 @@
     <TransitionGroup name="list">
         <div
             class="w-full min-h-[20%] max-h-[60%] flex flex-row items-center py-2 px-4 bg-[#363636] rounded-md"
-            v-for="(t, index) in selectIs == 'notCompleted' ? tasks : tasksCompleted"
-            :key="t.id"
+            v-for="(t, index) in selectIs == 'tasksNotCompleted' ? tasks : tasksCompleted"
+            :key="index"
         >
             <div class="w-[15%] h-full flex justify-center items-center">
                 <input type="checkbox" class="w-6 h-6" v-model="t.status" @click.prevent="changeStatus(t)" />
