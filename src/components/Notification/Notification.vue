@@ -1,6 +1,6 @@
 <template>
     <TransitionGroup name="list" tag="ul">
-        <article role="alert" class="notificacoes w-[60%]" v-for="(notification, index) in notifications" :key="index">
+        <article role="alert" class="notificacoes w-[60%] lg:w-[30%]" v-for="(notification, index) in notifications" :key="index">
             <div class="text-black font-bold rounded-t px-4 py-2" :class="notification.type === 'success' ? 'bg-green-500' : 'bg-yellow-500'">
                 {{ notification.title }}
             </div>
