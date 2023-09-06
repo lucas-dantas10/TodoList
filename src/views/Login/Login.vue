@@ -66,6 +66,7 @@ export default {
                     this.$router.push({ name: 'Home' });
                 })
                 .catch(({ response }) => {
+                    // console.debug(response)
                     this.errorMsg = response.data.message;
                     setTimeout(() => {
                         this.errorMsg = '';

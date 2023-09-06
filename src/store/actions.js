@@ -1,4 +1,4 @@
-import axiosClient from "../axios";
+import axiosClient from "../axios.js";
 import notify from '../hooks/notify.js';
 
 export function getCurrentUser({ commit }) {
@@ -14,7 +14,7 @@ export function login({commit}, data) {
             commit('setVisited');
 
             return data;
-        })
+        });
 }
 
 export function logout({commit, state}) {
