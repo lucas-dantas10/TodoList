@@ -99,7 +99,7 @@
 </template>
 
 <script setup>
-import { computed, onMounted, ref } from "vue";
+import { computed, ref, onBeforeMount } from "vue";
 import { useStore } from "vuex";
 import { useRoute, useRouter } from "vue-router";
 import ModalEditTask from "./ModalEditTask.vue";
@@ -119,17 +119,20 @@ const route = useRoute();
 const router = useRouter();
 const idParam = route.params.id;
 
+console.debug(idParam);
+
+onBeforeMount(() => {
+  store.dispatch("getTasks");
+  store.dispatch("getCategoriesUser");
+});
+
 const isLoading = computed(() => store.state.tasks.loading);
 
 const task = computed(() => {
   let taskSelected = store.state.tasks.data.filter((task) => task.id == idParam);
+  console.log(taskSelected);
   statusTask.value = taskSelected[0].status;
   return taskSelected;
-});
-
-onMounted(() => {
-  store.dispatch("getTasks");
-  store.dispatch("getCategoriesUser");
 });
 
 function editTask() {
