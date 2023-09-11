@@ -1,24 +1,34 @@
 import axiosClient from "../axios.js";
 import notify from '../hooks/notify.js';
+import axios from "axios";
 
 export function getCurrentUser({ commit }) {
     return axiosClient.get('/current-user')
         .then(({data}) => commit('setUser', data));
 }
 
-export function login({commit}, data) {
-    return axiosClient.post('/login', data)
+export async function login({commit}, data) {
+    return await axiosClient.post('/login', data)
         .then(({data}) => {
             commit('setToken', data.token);
             commit('setUser', data.user);
             commit('setVisited');
 
             return data;
-        });
+        })
+        // .catch(data => console.log(data));
+    // return await axiosClient.post('/login', data)
+    //     .then(({data}) => {
+    //         commit('setToken', data.token);
+    //         commit('setUser', data.user);
+    //         commit('setVisited');
+
+    //         return data;
+    //     });
 }
 
 export function logout({commit, state}) {
-    return axiosClient.post('/logout')
+    return axios.postForm('/logout')
         .then(() => {
             commit('setToken', null);
         })
@@ -42,9 +52,9 @@ export function getCategoriesUser({commit}) {
         })
 }
 
-export function getTasks({commit, state}, task) {
+export async function getTasks({commit, state}, task) {
     state.tasks.loading = true;
-    return axiosClient.get('/task')
+    return await axiosClient.get('/task')
         .then(({data}) => {
             commit('setTasks', data.tasks);
             state.tasks.length = data.tasks.length;
