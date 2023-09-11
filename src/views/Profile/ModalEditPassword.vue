@@ -13,7 +13,7 @@
     </template>
 
     <template #button>
-      <button @click.prevent="showModal = false">Cancelar</button>
+      <button @click.prevent="emit('close')">Cancelar</button>
       <button
         class="flex items-center gap-2 px-4 py-2 bg-[#8687E7] rounded-md"
         @click.prevent="editPassword()"
@@ -46,7 +46,8 @@ const props = defineProps({
 });
 
 const emit = defineEmits([
-    'update:showModal'
+    'update:showModal',
+    'close'
 ]);
 
 const show = computed({

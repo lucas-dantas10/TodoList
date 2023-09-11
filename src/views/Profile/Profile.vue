@@ -1,7 +1,7 @@
 <template>
     <Notification />
-    <ModalEditName :show-modal="showModalEditName" />
-    <ModalEditPassword :show-modal="showModalEditPassword" />
+    <ModalEditName :show-modal="showModalEditName" @close="showModalEditName = false" />
+    <ModalEditPassword :show-modal="showModalEditPassword" @close="showModalEditPassword = false" />
     <AppLayout title="Perfil">
         <section class="w-full h-full">
             <div class="w-full flex flex-col gap-8 p-6">
@@ -63,14 +63,12 @@ const showModalEditName = ref(false);
 const showModalEditPassword = ref(false);
 
 function showAddNewModal(menu) {
-
     if (menu.icon == 'gear') {
-        showModalEditName.value = menu.status;
+        showModalEditName.value = true;
         return;
     }
 
-    showModalEditPassword.value = menu.status;
-    // showModalEditName.value = value;
+    showModalEditPassword.value = true;
 }
 
 function logout() {
@@ -97,13 +95,13 @@ const tasksLeft = computed(() => {
     return tasksLeft.length;
 });
 
-const submenusSettings = [
-    {
-        subtitle: "Configurações do App",
-        icon: "gear",
-        href: "/profile/settings"
-    }
-];
+// const submenusSettings = [
+//     {
+//         subtitle: "Configurações do App",
+//         icon: "gear",
+//         href: "/profile/settings"
+//     }
+// ];
 
 const submenusAccount = [
     {
