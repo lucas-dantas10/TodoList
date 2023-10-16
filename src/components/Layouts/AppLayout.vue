@@ -4,15 +4,15 @@
 
     <header class="flex flex-row items-center justify-between p-8">
         <div>
-            <font-awesome-icon @click.prevent="$emit('searchShow')" class="text-2xl" :icon="['fas', 'filter']" v-if="menu" />
+            <font-awesome-icon @click.prevent="$emit('searchShow')" class="text-2xl" :icon="['fas', 'filter']" />
         </div>
         <div>
             <h1 class="text-2xl">{{ title }}</h1>
         </div>
-        <div class="border border-primary rounded-full w-10 h-10" >
+        <div class="border border-primary rounded-full w-10 h-10">
             <!-- <img src="https://randomuser.me/api/portraits/men/1.jpg" class="border border-primary rounded-full"
                 alt="Imagem de perfil de um homem"> -->
-            <img src="/todo.svg" class="border border-primary rounded-full" v-if="menu"
+            <img src="/todo.svg" class="border border-primary rounded-full"
                 alt="Imagem de perfil de um homem">
         </div>
     </header>
@@ -26,10 +26,10 @@
             <font-awesome-icon class="text-2xl" :icon="['fas', 'house']" />
             <h3 class="text-lg-">Home</h3>
         </router-link>
-        <div class="flex flex-col items-center justify-center w-[15%]">
+        <router-link :to="{ name: 'Calendary' }" class="flex flex-col items-center justify-center w-[15%]">
             <font-awesome-icon class="text-2xl" :icon="['fas', 'calendar-days']" />
             <h3 class="text-lg-">Calendario</h3>
-        </div>
+        </router-link>
         <div  @click.prevent="showNewModal()" 
             class="w-[15%] text-center absolute border border-indigo-600 bg-indigo-600 rounded-full top-[-37%] right-[43%] p-4">
             <font-awesome-icon class="text-2xl" :icon="['fas', 'plus']"/>
@@ -38,10 +38,10 @@
             <font-awesome-icon class="text-2xl" :icon="['fas', 'clock']" />
             <h3 class="text-lg-">Foco</h3>
         </router-link>
-        <div class="flex flex-col items-center justify-center w-[15%]">
+        <router-link :to="{ name: 'Profile' }" class="flex flex-col items-center justify-center w-[15%]">
             <font-awesome-icon class="text-2xl" :icon="['fas', 'user']" />
             <h3 class="text-lg-">Perfil</h3>
-        </div>
+        </router-link>
     </footer>
 </template>
 
@@ -69,7 +69,7 @@ export default {
 
     props: {
         title: String,
-        menu: Boolean
+        focus: Boolean
     },
 
     methods: {
