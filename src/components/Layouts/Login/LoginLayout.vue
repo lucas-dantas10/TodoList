@@ -12,6 +12,18 @@
             <div class="w-9/12 flex flex-col gap-10 lg:w-[30%]">
                 <h1 class="text-3xl font-semibold">{{ title }}</h1>
 
+                <div class="bg-white p-4 rounded-md">
+                    <p class="text-black font-bold">Usuário Demo:</p>
+                    <p class="text-gray-900 font-bold">
+                        <span class="font-normal">Usuário:</span> 
+                        user1
+                    </p>
+                    <p class="text-gray-900 font-bold">
+                        <span class="font-normal">Senha:</span> 
+                        user123
+                    </p>
+                </div>
+
                 <slot name="form"></slot>
 
                 <slot name="buttonForm"></slot>
