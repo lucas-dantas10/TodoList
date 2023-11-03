@@ -9,7 +9,7 @@
         <div 
             class="flex flex-col items-center justify-center w-full"
         >
-            <div class="w-9/12 flex flex-col gap-10 lg:w-[30%]">
+            <div class="w-9/12 flex flex-col gap-4 lg:w-[30%]">
                 <h1 class="text-3xl font-semibold">{{ title }}</h1>
 
                 <div class="bg-white p-4 rounded-md">
